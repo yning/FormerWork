@@ -478,7 +478,7 @@ BOOL C45Learner::Load(const char *m_fileName)
 
 
 // evaluate the dataset, print out the confusion matrix
-//ÆÀ¹ÀÊý¾Ý¼¯£¬´òÓ¡³ö»ìÏý¾ØÕó
+//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ý¼ï¿½ï¿½ï¿½ï¿½ï¿½Ó¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 void C45Learner::Evaluate()
 {
 	if(DecisionTree)
@@ -490,7 +490,7 @@ void C45Learner::Evaluate()
 
 // compute the precision and recall based on the
 // confusion matrix
-//»ùÓÚ»ìÏý¾ØÕóÀ´¼ÆËã×¼È·ÂÊºÍÕÙ»ØÂÊ
+//ï¿½ï¿½ï¿½Ú»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½×¼È·ï¿½Êºï¿½ï¿½Ù»ï¿½ï¿½ï¿½
 void C45Learner::CalPrecisionRecall(int numClass)
 {
 	if(!ConfusionMat)
@@ -1054,7 +1054,7 @@ ItemNo C45Learner::Group(DiscrValue V, ItemNo Fp, ItemNo Lp, Tree TestNode)
 }
 
 // Exchange items at a and b
-//½»»»aÓëb
+//ï¿½ï¿½ï¿½ï¿½aï¿½ï¿½b
 void C45Learner::Swap(ItemNo a, ItemNo b)
 {
     ItemCount HoldW;
@@ -1067,14 +1067,14 @@ void C45Learner::Swap(ItemNo a, ItemNo b)
 }
 
 // get the discrete value of the case at the column
-//»ñµÃ¸ÃÁÐµÄÀëÉ¢Öµ
+//ï¿½ï¿½ï¿½Ã¸ï¿½ï¿½Ðµï¿½ï¿½ï¿½É¢Öµ
 short C45Learner::DVal(int caseNo, int Att)
 {
 	return (short) (m_dataSet->m_data[caseNo][Att]);
 }
 
 // get the continuous value of the case at the column
-//»ñµÃ¸ÃÁÐµÄÁ¬ÐøÖµ
+//ï¿½ï¿½ï¿½Ã¸ï¿½ï¿½Ðµï¿½ï¿½ï¿½ï¿½ï¿½Öµ
 double C45Learner::CVal(int caseNo, int Att)
 {
 	return m_dataSet->m_data[caseNo][Att];
@@ -1409,7 +1409,7 @@ double C45Learner::DiscrKnownBaseInfo(ItemCount KnownItems, DiscrValue MaxVal)
 /*  particular attribute						 */
 /*									 */
 /*************************************************************************/
-//¼ÆËãÐÅÏ¢ÔöÒæ
+//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï¢ï¿½ï¿½ï¿½ï¿½
 double C45Learner::ComputeGain(double BaseInfo, double UnknFrac, DiscrValue MaxVal, ItemCount TotalItems)
 {
     DiscrValue v;
@@ -1817,7 +1817,8 @@ void C45Learner::Sprout(Tree Node, DiscrValue Branches)
     ForEach(S, 0, Node->Forks)
 		Node->Branch[S] = NULL;
 
-//	m_LogTrace.WriteLine("Sprout at Node %d(%d), Forks :%d\n", Node->nodeID, Node->NodeType, Node->Forks);
+//	m_LogTrace.WriteLine("Sprout at Node %d(%d), Forks :%d\n", 
+//Node->nodeID, Node->NodeType, Node->Forks);
 }
 
 // Construct and return a node for a test on a discrete attribute
