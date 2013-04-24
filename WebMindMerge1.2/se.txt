@@ -1,0 +1,186 @@
+while (lpszCur < cFileSize)
+            {
+                String temp = gbk.GetString(gbk.GetBytes(m_lpBaseAddress), pIter, gbk.GetByteCount(m_lpBaseAddress) - pIter);
+
+                if (temp.Length > 0)
+                {
+                    nStringLen = util.GetChar(temp);
+                    nID = util.GetInnerCode(temp, nStringLen);
+                    pIter += nStringLen;
+
+
+                    if (!IsFirst)
+                    {
+                        if (nID >= Utility.RESERVE_ITEMS)			//Chinese characters
+                        {
+                            nPreSub = nSub;
+                            nSub = Math.Abs(nBaseVal) + nID;
+                            if (nSub > m_nDictArraySize - 1)
+                            {
+                                //strncpy(m_cSegTxt+nIter,lpszCur,sizeof(char)*nWordLen);
+                                //strncpy(m_cSegTxt+nIter+nWordLen," ",sizeof(" "));
+                                m_cSegTxt.Append(gbk.GetString(gbk.GetBytes(m_lpBaseAddress), lpszCur, nWordLen/*gbk.GetByteCount(m_lpBaseAddress) - lpszCur*/));
+                                m_cSegTxt.Append(" ");
+
+                                nIter += (nWordLen + 1);
+                                lpszCur += nWordLen;
+                                pIter = lpszCur;
+                                IsFirst = true;
+                                nTestWordLen = 0;
+                                nWordLen = 0;
+                            }
+                            else
+                            {
+                                nCheckVal = Convert.ToInt32(m_pDict.m_vCheck[nSub]);
+                                nBaseVal = Convert.ToInt32(m_pDict.m_vBase[nSub]);
+
+                                if (nCheckVal != nPreSub || nBaseVal == 0)			
+                                {
+                                    //strncpy(m_cSegTxt+nIter,lpszCur,sizeof(char)*nWordLen);
+                                    //strncpy(m_cSegTxt+nIter+nWordLen," ",sizeof(" "));
+                                    m_cSegTxt.Append(gbk.GetString(gbk.GetBytes(m_lpBaseAddress), lpszCur, nWordLen/*gbk.GetByteCount(m_lpBaseAddress) - lpszCur*/));
+                                    m_cSegTxt.Append(" ");
+
+                                    nIter += nWordLen + 1;
+                                    lpszCur += nWordLen;
+                                    pIter = lpszCur;
+                                    IsFirst = true;
+                                    nWordLen = 0;
+                                    nTestWordLen = 0;
+                                }
+
+                                else if (nCheckVal == nPreSub && nBaseVal < 0)    //成词
+                                {
+                                    nTestWordLen += nStringLen;
+                                    nWordLen = nTestWordLen;
+                                    if (nBaseVal == (-1) * nSub)		//最大词
+                                    {
+                                        //strncpy(m_cSegTxt+nIter,lpszCur,sizeof(char)*nWordLen);
+                                        //strncpy(m_cSegTxt+nIter+nWordLen," ",sizeof(" "));
+                                        m_cSegTxt.Append(gbk.GetString(gbk.GetBytes(m_lpBaseAddress), lpszCur, nWordLen/*gbk.GetByteCount(m_lpBaseAddress) - lpszCur*/));
+                                        m_cSegTxt.Append(" ");
+
+                                        nIter += nWordLen + 1;
+                                        lpszCur += nWordLen;
+                                        pIter = lpszCur;
+                                        IsFirst = true;
+                                        nTestWordLen = 0;
+                                        nWordLen = 0;
+                                    }
+                                }
+                                else						//不成词但状态可继续
+                                {
+                                    nTestWordLen += nStringLen;
+                                }
+                            }
+
+                        }
+
+                        else							//非汉字
+                        {
+                            //strncpy(m_cSegTxt+nIter,lpszCur,sizeof(char)*nWordLen);
+                            //strncpy(m_cSegTxt+nIter+nWordLen," ",sizeof(" "));
+                            m_cSegTxt.Append(gbk.GetString(gbk.GetBytes(m_lpBaseAddress), lpszCur, nWordLen/*gbk.GetByteCount(m_lpBaseAddress) - lpszCur*/));
+                            m_cSegTxt.Append(" ");
+                            nIter += nWordLen + 1;
+                            lpszCur += nWordLen;
+                            pIter = lpszCur;
+                            IsFirst = true;
+                            nWordLen = 0;
+                            nTestWordLen = 0;
+                        }
+                    }
+                    else //	first character
+                    {
+
+                        if (nID >= Utility.RESERVE_ITEMS)								//汉字
+                        {
+                            if (nID > m_nDictArraySize - 1)
+                            {
+                                //strncpy(m_cSegTxt+nIter,lpszCur,sizeof(char)*nStringLen);
+                                //strncpy(m_cSegTxt+nIter+nStringLen," ",sizeof(" "));
+                                m_cSegTxt.Append(gbk.GetString(gbk.GetBytes(m_lpBaseAddress), lpszCur, nStringLen/*gbk.GetByteCount(m_lpBaseAddress) - lpszCur*/));
+                                m_cSegTxt.Append(" ");
+
+                                nIter += (nStringLen + 1);
+                                lpszCur += nStringLen;
+                                pIter = lpszCur;
+                                nTestWordLen = 0;
+                                nWordLen = 0;
+                            }
+                            else
+                            {
+                                nTestWordLen += nStringLen;
+                                nBaseVal = Convert.ToInt32(m_pDict.m_vBase[nID]);
+                                nCheckVal = Convert.ToInt32(m_pDict.m_vCheck[nID]);
+                                nWordLen = nTestWordLen;
+                                if (nBaseVal == 0 || nCheckVal != 0 || nBaseVal == (-1) * nID)	//单字不为词典中的首字或者单字成最大词
+                                {
+                                    //strncpy(m_cSegTxt+nIter,lpszCur,sizeof(char)*nWordLen);
+                                    //strncpy(m_cSegTxt+nIter+nWordLen," ",sizeof(" "));
+                                    m_cSegTxt.Append(gbk.GetString(gbk.GetBytes(m_lpBaseAddress), lpszCur, nWordLen/*gbk.GetByteCount(m_lpBaseAddress) - lpszCur*/));
+                                    m_cSegTxt.Append(" ");
+
+                                    nIter += (nWordLen + 1);
+                                    lpszCur = pIter;
+                                    nWordLen = nTestWordLen = 0;
+                                }
+                                else
+                                {
+                                    nSub = nID;
+                                    IsFirst = false;
+                                }
+                            }
+                        }
+                        else										//非汉字或单词
+                        {
+                            nWordLen = nStringLen;
+                            String temp2 = (gbk.GetString(gbk.GetBytes(m_lpBaseAddress), pIter, gbk.GetByteCount(m_lpBaseAddress) - pIter));
+                            if (temp2.Length > 0)
+                            {
+                                nStringLen = util.GetChar(temp2);
+                                nID = util.GetInnerCode(temp2, nStringLen);
+                                while (nID < Utility.RESERVE_ITEMS && nID != 5 && nID != 4 && pIter + nStringLen < cFileSize)							//非汉字、空格、回车和标点
+                                {
+                                    nWordLen += nStringLen;
+                                    pIter += nStringLen;
+                                    String temp3 = (gbk.GetString(gbk.GetBytes(m_lpBaseAddress), pIter, gbk.GetByteCount(m_lpBaseAddress) - pIter));
+                                    nStringLen = util.GetChar(temp3);
+                                    nID = util.GetInnerCode(temp3, nStringLen);
+                                }
+                                if (nWordLen <= FILTER_LEN)
+                                {
+                                    if (nID != 5)
+                                    {
+                                        //strncpy(m_cSegTxt+nIter,lpszCur,sizeof(char)*nWordLen);
+                                        //strncpy(m_cSegTxt+nIter+nWordLen," ",sizeof(" "));
+                                        m_cSegTxt.Append(gbk.GetString(gbk.GetBytes(m_lpBaseAddress), lpszCur, nWordLen/*gbk.GetByteCount(m_lpBaseAddress) - lpszCur*/));
+                                        m_cSegTxt.Append(" ");
+
+                                        nWordLen++;
+                                        nIter += nWordLen;
+                                    }
+                                    else
+                                    {
+                                        nWordLen += nStringLen;
+                                        pIter += nStringLen;
+                                        //strncpy(m_cSegTxt+nIter,lpszCur,sizeof(char)*nWordLen);
+                                        m_cSegTxt.Append(gbk.GetString(gbk.GetBytes(m_lpBaseAddress), lpszCur, nWordLen/*gbk.GetByteCount(m_lpBaseAddress) - lpszCur*/));
+                                        nIter += nWordLen;
+                                    }
+                                }
+
+                                lpszCur = pIter;
+                            }
+
+                        }// nID < RESERVE_ITEMS
+                    }//temp.Length > 0
+                }// if (temp.Length > 0)
+                else
+                {
+                    return;
+                }
+
+
+
+            }//end of while
