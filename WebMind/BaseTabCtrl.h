@@ -22,9 +22,10 @@ public:
 	void SetUnSelFontColor(COLORREF crUnSelFontColor);
 	void SetSepColor(COLORREF crSepColor);
 	int logging(CString funName,CString paraName,CString paraValue);
-//属性
+	
 public:
-	BOOL isCallFromLoop;//这个是用来表明在OnPaint函数里，调用drawItem函数到底是正常调用还是对于未被选择的标签页的调用，因此在while循环里设置isCallFromLoop来标识，从而使得在drawItem函数里好分清楚。
+	BOOL isCallFromLoop;
+	
 protected:
 	COLORREF m_crUnSelColor;
 	COLORREF m_crUnSelFontColor;
@@ -48,7 +49,7 @@ protected:
 		// NOTE - the ClassWizard will add and remove member functions here.
 	//}}AFX_MSG
 	afx_msg BOOL OnEraseBkgnd(CDC* pDC);
-	afx_msg void OnPaint();//在注释宏之间的声明在VC中灰色显示。afx_msg宏表示声明的是一个消息响应函数。
+	afx_msg void OnPaint();
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 
