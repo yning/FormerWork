@@ -1,15 +1,15 @@
 /****************************************************************/
-/*																*/
-/*  AboutCtrl.cpp												*/
-/*																*/
-/*  Implementation of the CAboutCtrl.cpp class.					*/
-/*																*/
-/*  Programmed by Pablo van der Meer							*/
-/*  Copyright Pablo Software Solutions 2002						*/
-/*  http://www.pablovandermeer.nl								*/
-/*																*/
-/*  Last updated: 28 june 2002									*/
-/*																*/
+/*							        */
+/*  AboutCtrl.cpp			                        */
+/*								*/
+/*  Implementation of the CAboutCtrl.cpp class.		        */
+/*								*/
+/*  Programmed by Pablo van der Meer			        */
+/*  Copyright Pablo Software Solutions 2002			*/
+/*  http://www.pablovandermeer.nl				*/
+/*								*/
+/*  Last updated: 28 june 2002				        */
+/*								*/
 /****************************************************************/
 
 
@@ -48,7 +48,7 @@ CAboutCtrl::CAboutCtrl()
 	m_strCredits = "\tCAboutCtrl\n\n"
 				   "\rProgrammed by:\n"
 				   "Pablo van der Meer\n\n"
-				   "Copyright © 2002 Pablo Software Solutions\n"
+				   "Copyright ï¿½ 2002 Pablo Software Solutions\n"
 				   "All right reserved.\n\n"
 				   "\rhttp:\\www.pablovandermeer.nl\n";
    */
@@ -78,11 +78,11 @@ END_MESSAGE_MAP()
 
 
 /********************************************************************/
-/*																	*/
-/* Function name : OnPaint											*/
-/* Description   : Called when the application makes a request to	*/
-/*				   repaint a portion of the window.					*/
-/*																	*/
+/*								    */
+/* Function name : OnPaint					    */
+/* Description   : Called when the application makes a request to   */
+/*				   repaint a portion of the window. */
+/*								    */
 /********************************************************************/
 void CAboutCtrl::OnPaint() 
 {
@@ -91,10 +91,10 @@ void CAboutCtrl::OnPaint()
 
 
 /********************************************************************/
-/*																	*/
-/* Function name : Initialize										*/
-/* Description   : Initialize some stuff							*/
-/*																	*/
+/*								    */
+/* Function name : Initialize					    */
+/* Description   : Initialize some stuff			    */
+/*								    */
 /********************************************************************/
 void CAboutCtrl::Initialize()
 {
