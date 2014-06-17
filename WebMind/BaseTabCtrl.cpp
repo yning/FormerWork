@@ -27,8 +27,7 @@ CBaseTabCtrl::CBaseTabCtrl()
 	m_crSelFontColor	= TC_SELFONT;
 	m_crSepColor		= TC_SEP;
 
-	isCallFromLoop=false;//这个是用来表明在OnPaint函数里，调用drawItem函数到底是正常调用还是对于未被选择的标签页的调用，因此在while循环里设置isCallFromLoop来标识，从而使得在drawItem函数里好分清楚。
-	
+	isCallFromLoop=false;
 	SetTabStyle(m_nTabStyle);
 }
 
@@ -49,15 +48,15 @@ END_MESSAGE_MAP()
 
 
 //<summary>
-//日志记录函数
+//Logging
 //</summayr>
 int CBaseTabCtrl::logging(CString funName,CString paraName,CString paraValue)
 {
-	CString tt="函数是:"+funName+"\t"+paraName+":"+paraValue+"\n";
+	CString tt="Function name is:"+funName+"\t"+paraName+":"+paraValue+"\n";
 	char *ll=(char *)malloc((tt.GetLength()+1)*sizeof(char));
 	lstrcpy(ll,tt);
 	FILE *file=NULL;
-	file=fopen("D:\\WebMind9\\log.txt","at");//要双斜杠好不好
+	file=fopen("D:\\WebMind9\\log.txt","at");//need to be double slash
 	if (NULL==file)
 	{
 		printf("open error!\n");
@@ -236,21 +235,21 @@ void CBaseTabCtrl::OnPaint()
 		int nTab = GetItemCount();
 		int nSel = GetCurSel();
 		temp.Format("%d",nTab);
-	//	logging("OnPaint","总的Tab数",temp);
+	//	logging("OnPaint","锟杰碉拷Tab锟斤拷",temp);
 		if (!nTab) // no pages added
 			return;
 
 		while (nTab--)
 		{
-			if (nTab != nSel)//非常不理解为什么非要处理未选中的窗口
+			if (nTab != nSel)//锟角筹拷锟斤拷锟斤拷锟斤拷为什么锟斤拷要锟斤拷锟斤拷未选锟叫的达拷锟斤拷
 			{
 				dis.itemID = nTab;
 				dis.itemState = 0;
 				VERIFY(GetItemRect(nTab, &dis.rcItem));
 				temp.Format("%d",nTab);
-			//	logging("OnPaint","进while循环的if语句了",temp);			
-				isCallFromLoop=true;//这个是用来表明在OnPaint函数里，调用drawItem函数到底是正常调用还是对于未被选择的标签页的调用，因此在while循环里设置isCallFromLoop来标识，从而使得在drawItem函数里好分清楚。
-				DrawItem(&dis);//看来这一句还不能少，少了的话，未被选择的标签页就会出问题（不能绘制标题和按钮）
+			//	logging("OnPaint","锟斤拷while循锟斤拷锟斤拷if锟斤拷锟斤拷锟斤拷",temp);			
+				isCallFromLoop=true;//锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷OnPaint锟斤拷锟斤拷锟斤，锟斤拷锟斤拷drawItem锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟矫伙拷锟角讹拷锟斤拷未锟斤拷选锟斤拷锟侥憋拷签页锟侥碉拷锟矫ｏ拷锟斤拷锟斤拷锟斤拷while循锟斤拷锟斤拷锟斤拷锟斤拷isCallFromLoop锟斤拷锟斤拷识锟斤拷锟接讹拷使锟斤拷锟斤拷drawItem锟斤拷锟斤拷锟斤拷锟矫凤拷锟斤拷锟斤拷锟斤拷
+				DrawItem(&dis);//锟斤拷锟斤拷锟斤拷一锟戒还锟斤拷锟斤拷锟劫ｏ拷锟斤拷锟剿的伙拷锟斤拷未锟斤拷选锟斤拷锟侥憋拷签页锟酵伙拷锟斤拷锟斤拷锟解（锟斤拷锟杰伙拷锟狡憋拷锟斤拷锟酵帮拷钮锟斤拷
 				DrawItemBorder(&dis);
 			}
 		}
@@ -260,7 +259,7 @@ void CBaseTabCtrl::OnPaint()
 		dis.itemState = ODS_SELECTED;
 		VERIFY(GetItemRect(nSel, &dis.rcItem));
 		temp.Format("%d",nSel);
-		//logging("OnPaint","后面的那个DrawItem调用",temp);
+		//logging("OnPaint","锟斤拷锟斤拷锟斤拷锟角革拷DrawItem锟斤拷锟斤拷",temp);
 		DrawItem(&dis);
 		DrawItemBorder(&dis);
 	}
