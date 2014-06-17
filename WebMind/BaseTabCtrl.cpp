@@ -235,21 +235,19 @@ void CBaseTabCtrl::OnPaint()
 		int nTab = GetItemCount();
 		int nSel = GetCurSel();
 		temp.Format("%d",nTab);
-	//	logging("OnPaint","�ܵ�Tab��",temp);
 		if (!nTab) // no pages added
 			return;
 
 		while (nTab--)
 		{
-			if (nTab != nSel)//�ǳ�������Ϊʲô��Ҫ����δѡ�еĴ���
+			if (nTab != nSel)
 			{
 				dis.itemID = nTab;
 				dis.itemState = 0;
 				VERIFY(GetItemRect(nTab, &dis.rcItem));
 				temp.Format("%d",nTab);
-			//	logging("OnPaint","��whileѭ����if������",temp);			
-				isCallFromLoop=true;//����������������OnPaint���������drawItem�����������������û��Ƕ���δ��ѡ���ı�ǩҳ�ĵ��ã�������whileѭ��������isCallFromLoop����ʶ���Ӷ�ʹ����drawItem�������÷�������
-				DrawItem(&dis);//������һ�仹�����٣����˵Ļ���δ��ѡ���ı�ǩҳ�ͻ������⣨���ܻ��Ʊ����Ͱ�ť��
+				isCallFromLoop=true;
+				DrawItem(&dis);
 				DrawItemBorder(&dis);
 			}
 		}
@@ -259,7 +257,6 @@ void CBaseTabCtrl::OnPaint()
 		dis.itemState = ODS_SELECTED;
 		VERIFY(GetItemRect(nSel, &dis.rcItem));
 		temp.Format("%d",nSel);
-		//logging("OnPaint","�������Ǹ�DrawItem����",temp);
 		DrawItem(&dis);
 		DrawItemBorder(&dis);
 	}
