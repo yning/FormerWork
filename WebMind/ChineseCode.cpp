@@ -21,7 +21,6 @@ void ChineseCode::UTF_8ToUnicode(wchar_t* pOut,char *pText)
 
 void ChineseCode::UnicodeToUTF_8(char* pOut, CString pText)
 {
-    // 注意 WCHAR高低字的顺序,低字节在前，高字节在后
     char* pchar;// =(char *) pText;
 	strcpy(pchar,pText);
     if(strlen(pchar)>=2)
@@ -59,7 +58,6 @@ void ChineseCode::GB2312ToUTF_8(string& pOut,char *pText, int pLen)
     int j = 0;      
     while(i < pLen)
     {
-            //如果是英文直接复制就可以
             if( *(pText + i) >= 0)
             {
                     rst[j++] = pText[i++];
@@ -82,7 +80,6 @@ void ChineseCode::GB2312ToUTF_8(string& pOut,char *pText, int pLen)
     }
     rst[j] = '\0';
 
-    //返回结果
     pOut = rst;             
     delete []rst;   
     
