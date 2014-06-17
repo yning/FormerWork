@@ -130,10 +130,10 @@ void CAboutCtrl::Initialize()
 
 
 /********************************************************************/
-/*																	*/
-/* Function name : PreSubclassWindow								*/
-/* Description   : Called before the window is subclassed.			*/
-/*																	*/
+/*								    */
+/* Function name : PreSubclassWindow				    */
+/* Description   : Called before the window is subclassed.	    */
+/*								    */
 /********************************************************************/
 void CAboutCtrl::PreSubclassWindow() 
 {
@@ -147,10 +147,10 @@ void CAboutCtrl::PreSubclassWindow()
 
 
 /********************************************************************/
-/*																	*/
-/* Function name : OnTimer											*/
-/* Description   : Update display									*/
-/*																	*/
+/*								    */
+/* Function name : OnTimer					    */
+/* Description   : Update display				    */
+/*								    */
 /********************************************************************/
 void CAboutCtrl::OnTimer(UINT nIDEvent) 
 {
@@ -164,10 +164,10 @@ void CAboutCtrl::OnTimer(UINT nIDEvent)
 
 
 /********************************************************************/
-/*																	*/
-/* Function name : AnimateLogo										*/
-/* Description   : Animate 'flying' logo							*/
-/*																	*/
+/*								    */
+/* Function name : AnimateLogo					    */
+/* Description   : Animate 'flying' logo			    */
+/*								    */
 /********************************************************************/
 void CAboutCtrl::AnimateLogo()
 {
@@ -247,10 +247,10 @@ void CAboutCtrl::AnimateLogo()
 
 
 /********************************************************************/
-/*																	*/
-/* Function name : LoadPicture										*/
-/* Description   : Load picture from resource into device context	*/
-/*																	*/
+/*								    */
+/* Function name : LoadPicture					    */
+/* Description   : Load picture from resource into device context   */
+/*								    */
 /********************************************************************/
 void CAboutCtrl::LoadPicture(int nResourceID, HDC &hDestinationDC, int &nWidth, int &nHeight, HDC hDC)
 {
@@ -323,10 +323,10 @@ void CAboutCtrl::LoadPicture(int nResourceID, HDC &hDestinationDC, int &nWidth, 
 
 
 /********************************************************************/
-/*																	*/
-/* Function name : LoadCredits										*/
-/* Description   : Create credits picture into device context		*/
-/*																	*/
+/*								    */
+/* Function name : LoadCredits					    */
+/* Description   : Create credits picture into device context	    */
+/*								    */
 /********************************************************************/
 void CAboutCtrl::LoadCredits(HDC &hDestinationDC, int nWidth, int nHeight, HDC hDC)
 {
@@ -437,10 +437,10 @@ void CAboutCtrl::LoadCredits(HDC &hDestinationDC, int nWidth, int nHeight, HDC h
 
 
 /********************************************************************/
-/*																	*/
-/* Function name : SetCredits										*/
-/* Description   : Member function to set credits text.				*/
-/*																	*/
+/*								    */
+/* Function name : SetCredits					    */
+/* Description   : Member function to set credits text.	            */
+/*								    */
 /********************************************************************/
 void CAboutCtrl::SetCredits(LPCTSTR lpszCredits)
 {
