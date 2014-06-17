@@ -1,8 +1,5 @@
+/////////////////////////////////////////////////////////////////////////////
 // AnimateIcon.h : interface of the CAnimateIcon class
-// written by Rajesh Parikh (MCSD)
-// email : rparikh@usa.net
-// Not protected by any copyright, use it freely
-//
 /////////////////////////////////////////////////////////////////////////////
 
 #if !defined(AFX_ANIMATEICON_H__47E058AD_6F69_11D2_B59C_86DD54033006__INCLUDED_)
