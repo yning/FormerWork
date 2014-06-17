@@ -1,12 +1,6 @@
 ///////////////////////////////////////////////////////////////
 // Attribute.cpp: implementation of the CAttribute class.
 //
-// This software was written by Tingshao Zhu.
-//
-// Copyright (C) 2000-2004 Tingshao Zhu. All rights reserved!
-// Use in commercial applications requires written permission
-// This software is provided "as is", with no warranty.
-//
 ///////////////////////////////////////////////////////////////
 
 #include "stdafx.h"
