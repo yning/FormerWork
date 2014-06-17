@@ -46,7 +46,7 @@ CCorpus::~CCorpus()
 	}
 }
 
-void CCorpus::load(const char *wordfreq)//加载单词的频次文件
+void CCorpus::load(const char *wordfreq)
 {
 	if(!PathFileExists(wordfreq))
 		return;
