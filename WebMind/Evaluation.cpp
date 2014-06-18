@@ -51,7 +51,7 @@ CEvaluation::~CEvaluation()
 
 bool CEvaluation::runEvaluation()
 {
-	CWizard97Sheet dlgSheet(_T("LILAC-1"), NULL, 0, NULL, NULL, NULL);
+	CWizard97Sheet dlgSheet(_T("WebMind-1"), NULL, 0, NULL, NULL, NULL);
 
 	dlgSheet.bCompare = bCompare;
 
