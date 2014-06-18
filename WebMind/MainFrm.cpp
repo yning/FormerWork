@@ -48,8 +48,8 @@ using namespace std;
 #include <direct.h>//mkdir
 #include "SelectLang.h"
 #include "ChartCtrl/ChartBarSerie.h"//bar series
-#include "Logging.h"//日志函数集中营
-#include "MaleLogger.h"//一个日志系统
+#include "Logging.h"
+#include "MaleLogger.h"
 
 //by kosko
 #include <afxinet.h>//CInternetSession
@@ -164,7 +164,7 @@ UINT g_BarInfo[MAX_BAR] = {
 	ID_SYSMENU_BAR,
 	ID_MENU_BAR,
 	ID_VIEW_STATUS_BAR,
-	IDD_PSYCHOSTATEBAR//显示心理的那个资源,added by kosko
+	IDD_PSYCHOSTATEBAR//锟斤拷示锟斤拷锟斤拷锟斤拷锟角革拷锟斤拷源,added by kosko
 	};
 
 //##############################################################
@@ -389,29 +389,6 @@ IMPLEMENT_DYNAMIC(CMainFrame, CMDIFrameWnd)
 
 const UINT MSWHELL_ROLLMSG = RegisterWindowMessage( "MSWHEEL_ROLLMSG" );
 
-/*
-BEGIN_MESSAGE_MAP( theClass, baseClass )
-
-  参数：
-    theClass	指定消息映射所属的类的名字。
-    baseClass	指定theClass的基类的名字。
-    说明：
-      使用BEGIN_MESSAGE_MAP宏开始你的消息映射的定义。
-      你的类的成员函数的实现文件（.CPP）中，使用BEGIN_MESSAGE_MAP宏开始消息映射，
-      然后为每个消息处理函数加入一个入口，最后用END_MESSAGE_MAP宏结束消息映射。
-	  
-		每个消息映射入口的格式如下：
-		　　ON_Notification(id, memberFxn)
-		　　其中id指定了发送通知的控件的子窗口的ID，而memberFxn指定了处理该通知的父对象中的成员函数名。
-		　　父对象的函数原型格式如下：
-		　　afx_msg void memberFxn( );
-
-		ON_NOTIFY是控件向其父窗口发送消息处理的宏，
-		ON_COMMAND是菜单和工具栏项处理消息的宏，
-		ON_MESSAGE是处理自定义消息的宏 
-
-
-*/
 BEGIN_MESSAGE_MAP(CMainFrame, CMDIFrameWnd)
 	ON_WM_CREATE()
 	ON_COMMAND(ID_FILE_NEW_BLANK, OnFileNewBlank)
@@ -499,7 +476,7 @@ BEGIN_MESSAGE_MAP(CMainFrame, CMDIFrameWnd)
 	ON_COMMAND(ID_TAB_NEXT, OnTabNext)
 	ON_COMMAND(ID_OPTIONS_NEWTAB, OnNewTab)
 	ON_UPDATE_COMMAND_UI(ID_OPTIONS_NEWTAB, OnUpdateNewTab)
-	ON_BN_CLICKED(IDC_PSYCHOSTATEBUTTON, OnBitMapButton)//added by kosko,心理状态按钮的事件响应函数(写到dialogbar上监听不到事件)
+	ON_BN_CLICKED(IDC_PSYCHOSTATEBUTTON, OnBitMapButton)
 	//{{AFX_MSG_MAP(CMainFrame)
 	ON_COMMAND(ID_OPTIONS_URLINSTATUS, OnOptionsUrlinstatus)
 	ON_UPDATE_COMMAND_UI(ID_OPTIONS_URLINSTATUS, OnUpdateOptionsUrlinstatus)
@@ -733,7 +710,7 @@ static UINT g_nIndicators[] =
 };
 
 //<summary>
-//标准工具栏
+//锟斤拷准锟斤拷锟斤拷锟斤拷
 //</summary>
 UINT g_nToolBarID[]=
 {
@@ -892,12 +869,12 @@ UINT g_ToolBarLabel[]=
 /////////////////////////////////////////////////////////////////////////////
 
 //<summary>
-//MaleLogger系统的定义变量
+//MaleLogger系统锟侥讹拷锟斤拷锟斤拷锟斤拷
 //</summary>
-CDictionary *pDict; //词典类
-CSegment seg;//分词类
-CString g_BtnClk = _T("MLBtnClk_");//日志存储的文件名
-CString g_EditChangePrefix = _T("MLEditChange_");//日志存储的文件名
+CDictionary *pDict; //锟绞碉拷锟斤拷
+CSegment seg;//锟街达拷锟斤拷
+CString g_BtnClk = _T("MLBtnClk_");//锟斤拷志锟芥储锟斤拷锟侥硷拷锟斤拷
+CString g_EditChangePrefix = _T("MLEditChange_");//锟斤拷志锟芥储锟斤拷锟侥硷拷锟斤拷
 bool HeaderCB(CString &Header, const CString &Path, const CTime &Time);
 CMaleLogger g_Logger(0,"txt", HeaderCB, NULL, true, 1000);
 bool HeaderCB(CString &Header, const CString &Path, const CTime &Time)
@@ -964,7 +941,7 @@ CMainFrame::CMainFrame()
 	m_bRMouseDrag = 0;
 	m_bRMouseGesture = 0;
 
-	m_tabsAtSameTime=0;//记录同时打开的最大网页数
+	m_tabsAtSameTime=0;//锟斤拷录同时锟津开碉拷锟斤拷锟斤拷锟斤拷页锟斤拷
 	
 	//must init to 0, or it will be random 
 	m_bIsAutoSave = 0;
@@ -984,7 +961,7 @@ CMainFrame::CMainFrame()
 	m_beVisibleNewWin=TRUE;
 
 	//from here: add by ny
-	//以下是为了获取当前系统路径存入szFull
+	//锟斤拷锟斤拷锟斤拷为锟剿伙拷取锟斤拷前系统路锟斤拷锟斤拷锟斤拷szFull
   TCHAR szFull[_MAX_PATH];   
   TCHAR szDrive[_MAX_DRIVE];   
   TCHAR szDir[_MAX_DIR];   
@@ -993,20 +970,20 @@ CMainFrame::CMainFrame()
   _tcscpy(szFull, szDrive);   
   _tcscat(szFull, szDir);  
 
-	//读取词典文件（设置词典文件路径）
+	//锟斤拷取锟绞碉拷锟侥硷拷锟斤拷锟斤拷锟矫词碉拷锟侥硷拷路锟斤拷锟斤拷
 	//long begintime=clock();
-	pDict=new CDictionary; //词典类
+	pDict=new CDictionary; //锟绞碉拷锟斤拷
     TCHAR path1[_MAX_PATH];
      _tcscpy(path1,szFull);
 	TCHAR path2[_MAX_PATH];
 	 _tcscpy(path2,szFull);
 	strcat(path1,"CoreDict.txt");
 	 strcat(path2,"OutDictArray.dct");
-    string strSrc=path1; //文本格式的词典路径
-    string strDes=path2;//双数组TRIE树格式的词典路径
+    string strSrc=path1; //锟侥憋拷锟斤拷式锟侥词碉拷路锟斤拷
+    string strDes=path2;//双锟斤拷锟斤拷TRIE锟斤拷锟斤拷式锟侥词碉拷路锟斤拷
 
 
-	//若未生成双数组格式词典则需要生成双数组格式的词典,若已有双数组格式的词典则直接加载词典即可
+	//锟斤拷未锟斤拷锟斤拷双锟斤拷锟斤拷锟斤拷式锟绞碉拷锟斤拷锟斤拷要锟斤拷锟斤拷双锟斤拷锟斤拷锟斤拷式锟侥词碉拷,锟斤拷锟斤拷锟斤拷双锟斤拷锟斤拷锟斤拷式锟侥词碉拷锟斤拷直锟接硷拷锟截词典即锟斤拷
 	//bool bSuccess=pDict->SaveArray(strSrc.c_str(),strDes.c_str(),true);
 	//if (!bSuccess)
 	//{
@@ -1015,7 +992,7 @@ CMainFrame::CMainFrame()
 //		return 1;
 //	}
 
-	//加载双数组词典文件
+	//锟斤拷锟斤拷双锟斤拷锟斤拷锟绞碉拷锟侥硷拷
 	bool bSuc=pDict->Load(strDes.c_str());
 	if (!bSuc)
 	{
@@ -1024,11 +1001,11 @@ CMainFrame::CMainFrame()
 	//	return 1;
 	}
 	/*
-	//双数组词典管理：包括词的查找、插入和删除
-	bool bChange=false;//记录词典是否修改
+	//双锟斤拷锟斤拷锟绞碉拷锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟绞的诧拷锟揭★拷锟斤拷锟斤拷锟斤拷删锟斤拷
+	bool bChange=false;//锟斤拷录锟绞碉拷锟角凤拷锟睫革拷
 
-	//查找
-	string strWord="中国人民解放军";
+	//锟斤拷锟斤拷
+	string strWord="锟叫癸拷锟斤拷锟斤拷锟斤拷锟脚撅拷";
 	int iIfFind = pDict->SearchWord(strWord.c_str());
 	if(iIfFind == 0)
 	{
@@ -1037,25 +1014,25 @@ CMainFrame::CMainFrame()
 	else
 		printf("Cannot find the word %s\n",strWord.c_str());
 	
-	//增加
+	//锟斤拷锟斤拷
 	if(!strWord.empty())
 	{
 		if(pDict->AddWord(strWord.c_str()))
 			bChange = true;
 		else 
-			printf("Failed to insert the word %s to the dict！\n",strWord.c_str());
+			printf("Failed to insert the word %s to the dict锟斤拷\n",strWord.c_str());
 	}
 
-	//删除
+	//删锟斤拷
 	if(!strWord.empty())
 	{
 		if(pDict->DeleteWord(strWord.c_str()))
 			bChange = true;
 		else
-			printf("Failed to delete the word %s to the dict！\n",strWord.c_str());
+			printf("Failed to delete the word %s to the dict锟斤拷\n",strWord.c_str());
 	}
 
-	//如果词典改变则保存修改后的词典
+	//锟斤拷锟斤拷锟绞碉拷锟侥憋拷锟津保达拷锟睫改猴拷锟侥词碉拷
 	if (bChange)
 	{
 		pDict->SaveArray(NULL,strDes.c_str(),false);
@@ -1064,9 +1041,9 @@ CMainFrame::CMainFrame()
 	}*/
 	//////////////////////////////
 	
- //正向最大匹配分词
-	//CSegment seg;//分词类
-	seg.Init(pDict); //加载词典
+ //锟斤拷锟斤拷锟斤拷锟斤拷匹锟斤拷锟街达拷
+	//CSegment seg;//锟街达拷锟斤拷
+	seg.Init(pDict); //锟斤拷锟截词碉拷
 	//m_pCurView = NULL; //by ny m_pHistoryThread=NULL
 	int imb=theSettings.m_bHistory;//by ny
 	int imba=theSettings.m_bAnnotation;//by ny
@@ -1141,14 +1118,14 @@ CMainFrame::CMainFrame()
 //<<<<<<< .mine
 	
 	//////////////////////////////////////////////////////////////////////////
-	//记录某链接的时的ip
+	//锟斤拷录某锟斤拷锟接碉拷时锟斤拷ip
 	CString tt=GetLocalIP();
-	UrlAnalysis::clientIP=GetLocalIP();//记录ip
+	UrlAnalysis::clientIP=GetLocalIP();//锟斤拷录ip
 	//////////////////////////////////////////////////////////////////////////
 
 	
 	//////////////////////////////////////////////////////////////////////////
-	//加载互联网使用习惯的文件
+	//锟斤拷锟截伙拷锟斤拷锟斤拷使锟斤拷习锟竭碉拷锟侥硷拷
 	//CString filename=_T("D:\\WebMind9\\WebMindCode-ny-new\\Debug\\Data\\Internethabit.xml");
 	CString filename=Utility::GetCurrentPath();
 	filename+="\Data\\Internethabit.xml";
@@ -1175,7 +1152,7 @@ CMainFrame::~CMainFrame()
 	//CString filename2=_T("D:\\WebMind9\\WebMindCode-ny-new\\Debug\\Data\\SurfInternetPeriod.xml");
 	CString filename2=Utility::GetCurrentPath();
 	filename2+="\Data\\SurfInternetPeriod.xml";
-	SurfInternetPeriod::m_tabsAtSameTime=m_tabsAtSameTime;//同时打开的最大网页数
+	SurfInternetPeriod::m_tabsAtSameTime=m_tabsAtSameTime;//同时锟津开碉拷锟斤拷锟斤拷锟斤拷页锟斤拷
 	SurfInternetPeriod::endSurfTime=CHighTime::GetPresentTime();
 	SurfInternetPeriod::SaveSurfInternetPeriod(filename2);
 
@@ -1393,7 +1370,7 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 	m_bSmallToolBar = app->GetProfileInt("Settings", "SmallToolbar",0);
 	m_nTextLabel = app->GetProfileInt("Settings", "TextLabel", 0);
 	m_bColorIcon = app->GetProfileInt("Settings", "ColorIcon", TRUE);
-	InitToolBar();//初始化标准工具栏
+	InitToolBar();//锟斤拷始锟斤拷锟斤拷准锟斤拷锟斤拷锟斤拷
 
 	//AddressBar
 	m_bShowToolbarLabel = app->GetProfileInt("Settings", "ShowToolbarLabel", TRUE);
@@ -1411,13 +1388,13 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 	m_AddressBar.GetToolBarCtrl().SetExtendedStyle(TBSTYLE_EX_DRAWDDARROWS);
 
 	//<summary>
-	//下面这部分代码由kosko添加，目的是在地址栏前面加前进、后退、刷新按钮
+	//锟斤拷锟斤拷锟解部锟街达拷锟斤拷锟斤拷kosko锟斤拷锟接ｏ拷目锟斤拷锟斤拷锟节碉拷址锟斤拷前锟斤拷锟斤拷前锟斤拷锟斤拷锟斤拷锟剿★拷刷锟铰帮拷钮
 	//<summary>
 /*	int id,j,n=0;
 	CString strr;
 	strr.Empty();
-	m_AddressBar.SetButtons(NULL, 5);//为什么没效果？
-	for(j=2; j<6; j++)//这个是对应着g_nToolBarID[]数组的
+	m_AddressBar.SetButtons(NULL, 5);//为什么没效锟斤拷锟斤拷
+	for(j=2; j<6; j++)//锟斤拷锟斤拷锟角讹拷应锟斤拷g_nToolBarID[]锟斤拷锟斤拷锟斤拷
 	{
 		id = j;
 		if(id!=4)
@@ -1442,7 +1419,7 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 	m_AddressBar.SetButtonInfo(1, IDOK, TBSTYLE_BUTTON| TBSTYLE_DROPDOWN,0 );//| TBSTYLE_DROPDOWN, 0);
 	//m_AddressBar.SetButtonInfo(3, 0, TBBS_SEPARATOR, 0);
 	//m_AddressBar.SetButtonInfo(4, IDOK, TBSTYLE_BUTTON| TBSTYLE_DROPDOWN,0 );//| TBSTYLE_DROPDOWN, 0);
-	//IDOK->OnNewAddressEnter，是消息响应的里的命令模式
+	//IDOK->OnNewAddressEnter锟斤拷锟斤拷锟斤拷息锟斤拷应锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷模式
 
 	CString strTip;
 	LOADSTR(strTip ,IDS_GO);
@@ -1463,25 +1440,25 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 	@param dwStyle
 	Style of the control
 	**/
-//暂时性的注释掉
+//锟斤拷时锟皆碉拷注锟酵碉拷
 /*
 	//int Create(CWnd* pParentWnd, const RECT& rect, UINT nID, DWORD dwStyle=WS_VISIBLE);
-	if (!m_ChartCtrl.Create(this,CRect(0, 0, 0,0),IDC_CHARTCTRL,0x52010000))//目前把ChartCtrl创建起来了，然后还有加载到Rebar上
-	{//开始我把style设置成WS_CHILD | WS_VISIBLE
+	if (!m_ChartCtrl.Create(this,CRect(0, 0, 0,0),IDC_CHARTCTRL,0x52010000))//目前锟斤拷ChartCtrl锟斤拷锟斤拷锟斤拷锟斤拷锟剿ｏ拷然锟斤拷锟斤拷锟叫硷拷锟截碉拷Rebar锟斤拷
+	{//锟斤拷始锟揭帮拷style锟斤拷锟矫筹拷WS_CHILD | WS_VISIBLE
 		TRACE0("Failed to create ChartCtrl\n");
 		return -1;      // fail to create;
 	}
-	//这里是我学那个webic上的，换别的位置一样不行
+	//锟斤拷锟斤拷锟斤拷锟斤拷学锟角革拷webic锟较的ｏ拷锟斤拷锟斤拷锟斤拷位锟斤拷一锟斤拷锟斤拷锟斤拷
 	if (
 		//!m_wndReBar.AddBar(&m_AddressBar,"Address", NULL, RBBS_GRIPPERALWAYS|RBBS_FIXEDBMP | RBBS_BREAK)||
 		!m_wndReBar.AddBar(&m_ChartCtrl,NULL, NULL,RBBS_FIXEDSIZE | RBBS_FIXEDBMP)
-	)//把ctrl加到ReBar上
+	)//锟斤拷ctrl锟接碉拷ReBar锟斤拷
 	{	
 		TRACE0("Failed to create rebar\n");
 		return -1;      // fail to create
 	}
 
-	//CDialogBar的创建
+	//CDialogBar锟侥达拷锟斤拷
 	if (!m_newdlgbar.Create(this, IDD_NEWDLGBAR, CBRS_LEFT | WS_VISIBLE | WS_CHILD | CBRS_GRIPPER,IDD_NEWDLGBAR))
 	{
 	}
@@ -1492,7 +1469,7 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 	DockControlBar(&m_newdlgbar);
 */
 	
-	//创建dialogbar
+	//锟斤拷锟斤拷dialogbar
 	if (!m_psychoStateBar.Create(this, IDD_PSYCHOSTATEBAR, CBRS_LEFT | WS_VISIBLE | WS_CHILD | CBRS_GRIPPER, 
 		IDD_PSYCHOSTATEBAR))
 	{
@@ -1663,13 +1640,13 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 	/*
 	CTabCtrl::Create
 	  BOOL Create( DWORD dwStyle, const RECT& rect, CWnd* pParentWnd, UINT nID );
-		返回值：
-		如果成功地初始化了对象则返回TRUE；否则返回FALSE。	
-		  参数：
-		  dwStyle	指定标签控件的风格。标签控件风格的任意组合都适用于这个控件。
-		  rect	指定控件的尺寸和位置。它可以是一个CRect对象或一个RECT结构。
-		  pParentWnd	指定该标签控件的父窗口，通常是一个CDialog。它不能是NULL。
-		  nID	指定标签控件的ID。
+		锟斤拷锟斤拷值锟斤拷
+		锟斤拷锟斤拷锟缴癸拷锟截筹拷始锟斤拷锟剿讹拷锟斤拷锟津返伙拷TRUE锟斤拷锟斤拷锟津返伙拷FALSE锟斤拷	
+		  锟斤拷锟斤拷锟斤拷
+		  dwStyle	指锟斤拷锟斤拷签锟截硷拷锟侥凤拷锟今。憋拷签锟截硷拷锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟较讹拷锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟截硷拷锟斤拷
+		  rect	指锟斤拷锟截硷拷锟侥尺达拷锟斤拷位锟矫★拷锟斤拷锟斤拷锟斤拷锟斤拷一锟斤拷CRect锟斤拷锟斤拷锟斤拷一锟斤拷RECT锟结构锟斤拷
+		  pParentWnd	指锟斤拷锟矫憋拷签锟截硷拷锟侥革拷锟斤拷锟节ｏ拷通锟斤拷锟斤拷一锟斤拷CDialog锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷NULL锟斤拷
+		  nID	指锟斤拷锟斤拷签锟截硷拷锟斤拷ID锟斤拷
 	*/
 	//</summary>
 	//rect = CRect(0,0,200,450);
@@ -1692,15 +1669,15 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 	GetMenu()->CheckMenuItem(ID_VIEW_TASKBAR, MF_CHECKED);
 	m_wndTab.SetFonts();
 	
-	//在标签页上添加右上角那个关闭按钮
+	//锟节憋拷签页锟斤拷锟斤拷锟斤拷锟斤拷锟较斤拷锟角革拷锟截闭帮拷钮
 	m_ViewTabImages.Create(IDB_BITMAP_TABCTRL, 14, 0, RGB(0, 255, 0));
 	/*m_wndTab.Create(WS_CHILD | WS_VISIBLE | WS_EX_NOPARENTNOTIFY | 
 		TCS_TOOLTIPS | TCS_SINGLELINE | TCS_FOCUSNEVER | TCS_FORCELABELLEFT, 
 		CRect(0, 0, 0, 0), this, ID_VIEWTAB);
 	*/
-	m_wndTab.SetImageList(&m_ViewTabImages);//此成员函数用来将一个图像列表分配给一个标签控件。
+	m_wndTab.SetImageList(&m_ViewTabImages);//锟剿筹拷员锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷一锟斤拷图锟斤拷锟叫憋拷锟斤拷锟斤拷锟斤拷一锟斤拷锟斤拷签锟截硷拷锟斤拷
 
-//	m_wndReBar2.AddBar(&m_wndTab);//现在我将师姐的这句代码给去掉，这样，浏览器下面的标签栏就没有了。
+//	m_wndReBar2.AddBar(&m_wndTab);//锟斤拷锟斤拷锟揭斤拷师锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷去锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟侥憋拷签锟斤拷锟斤拷没锟斤拷锟剿★拷
 
 	//add tab to top or bottom
 	REBARBANDINFO rbbi;
@@ -1709,7 +1686,7 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 		m_wndTab.ModifyStyle(0, CCS_NORESIZE);//m_wndTab.ModifyStyle(0, CCS_NORESIZE);
 	else
 	{
-		//这里rbbi是用来定制ReBar的样式的
+		//锟斤拷锟斤拷rbbi锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷ReBar锟斤拷锟斤拷式锟斤拷
 		rbbi.cbSize = sizeof(rbbi);
 		rbbi.fMask = RBBIM_CHILDSIZE | RBBIM_IDEALSIZE  |RBBIM_ID;
 		rbbi.wID = ID_VIEW_TASKBAR;
@@ -2340,12 +2317,12 @@ void CMainFrame::OpenMenuUrl(CString strUrl, DWORD dwProperty, int nAutoRunCmd)
 }
 
 //<summary>
-//添加新标签页
+//锟斤拷锟斤拷锟铰憋拷签页
 //</summary>
 void CMainFrame::OnFileNewBlank() 
 {
 	NewChildWindow(2,0, NULL, NULL, TRUE);
-	if(m_tabsAtSameTime<m_wndTab.GetItemCount())//记录同时打开的最大网页数
+	if(m_tabsAtSameTime<m_wndTab.GetItemCount())//锟斤拷录同时锟津开碉拷锟斤拷锟斤拷锟斤拷页锟斤拷
 		m_tabsAtSameTime=m_wndTab.GetItemCount();
 }
 
@@ -2394,7 +2371,7 @@ void CMainFrame::OnUpdateProgress(CCmdUI* pCmdUI)
 }
 
 //<summary>
-//点击浏览器最下侧，增加一个新窗口
+//锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟铰侧，锟斤拷锟斤拷一锟斤拷锟铰达拷锟斤拷
 //</summary>
 int CMainFrame::AddNewTab(CChildFrame* tcf, int CurID, LPTSTR label, BOOL bAddLast)
 {
@@ -2428,7 +2405,7 @@ int CMainFrame::AddNewTab(CChildFrame* tcf, int CurID, LPTSTR label, BOOL bAddLa
 	TCITEM TabCtrlItem;
 	TabCtrlItem.mask = TCIF_TEXT|TCIF_PARAM;
 	if(label==NULL)
-		TabCtrlItem.pszText = "about:blank";//这里就是设置标题，但真正意义上设置标题还是在别处
+		TabCtrlItem.pszText = "about:blank";//锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟矫憋拷锟解，锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟矫憋拷锟解还锟斤拷锟节憋拷锟斤拷
 	else
 		TabCtrlItem.pszText = label;
 	TabCtrlItem.lParam = (LPARAM)tcf;
@@ -2568,7 +2545,7 @@ void CMainFrame::OnRClickElse(NMHDR* pNotifyStruct, LRESULT* pResult)
 }
 
 //<summary>
-//右击状态栏 这里应该是消息响应函数,BEGIN_XX_MAP的响应函数
+//锟揭伙拷状态锟斤拷 锟斤拷锟斤拷应锟斤拷锟斤拷锟斤拷息锟斤拷应锟斤拷锟斤拷,BEGIN_XX_MAP锟斤拷锟斤拷应锟斤拷锟斤拷
 //</summary>
 void CMainFrame::OnRClickStatusToolbar(NMHDR* pNotifyStruct, LRESULT* pResult)
 {
@@ -2578,13 +2555,13 @@ void CMainFrame::OnRClickStatusToolbar(NMHDR* pNotifyStruct, LRESULT* pResult)
 	if(pw!=NULL && (pw->m_hWnd ==  m_wndTab.GetSafeHwnd() 
 		|| ::IsChild(m_wndAddress->GetSafeHwnd(), pw->m_hWnd)))
 		return;
-	CMenu* pPopup = m_TrayMenu.GetSubMenu(0);//获取弹出窗口
+	CMenu* pPopup = m_TrayMenu.GetSubMenu(0);//锟斤拷取锟斤拷锟斤拷锟斤拷锟斤拷
 	pPopup->TrackPopupMenu(TPM_LEFTALIGN|TPM_RIGHTBUTTON,point.x,point.y,AfxGetMainWnd());
 	//Displays a floating pop-up menu at the specified location and tracks the selection of items on the pop-up menu.
 }
 
 //<summary>
-//在主区域内右击，然后显示菜单
+//锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟揭伙拷锟斤拷然锟斤拷锟斤拷示锟剿碉拷
 //</summary>
 void CMainFrame::OnRClick(NMHDR* pNotifyStruct, LRESULT* pResult)
 {
@@ -2870,7 +2847,7 @@ void CMainFrame::OnDropDown(NMHDR* pNotifyStruct, LRESULT* pResult)
 	else if(pNMToolBar->iItem == ID_ENABLE_FILTER)
 	{
 		pPopup = SMP_FILTER;
-		//因为在底部,弹出方式特殊点
+		//锟斤拷为锟节底诧拷,锟斤拷锟斤拷锟斤拷式锟斤拷锟斤拷锟斤拷
 		pPopup->TrackPopupMenu(TPM_BOTTOMALIGN | TPM_LEFTBUTTON, rect.left, rect.top - 19, AfxGetMainWnd());
 	}
 	else //some simple button
@@ -2931,13 +2908,13 @@ void CMainFrame::OnViewTaskbar()
 	int nb;
 	if(m_bTopTab)
 	{
-		nb = m_wndReBar.GetReBarCtrl().IDToIndex(ID_VIEW_TASKBAR);//m_wndReBar这个是用来管m_bTopTab的
+		nb = m_wndReBar.GetReBarCtrl().IDToIndex(ID_VIEW_TASKBAR);//m_wndReBar锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷m_bTopTab锟斤拷
 		m_wndReBar.GetReBarCtrl().GetBandInfo(nb, &rbbi);
 	}
 	else
 	{
 		nb=0;
-		m_wndReBar2.GetReBarCtrl().GetBandInfo(nb, &rbbi);//m_wndReBar2这个是用来管底部标签页的ReBar
+		m_wndReBar2.GetReBarCtrl().GetBandInfo(nb, &rbbi);//m_wndReBar2锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟杰底诧拷锟斤拷签页锟斤拷ReBar
 	}
 
 	if(rbbi.fStyle & RBBS_HIDDEN)
@@ -3040,7 +3017,7 @@ void CMainFrame::LockTab(CChildFrame *tcf)
 		tcf->m_bLock =!tcf->m_bLock;
 		if(pView->m_nProgress<0)
 		{
-			logging("LockTab","SetTabIcon","调用了");
+			logging("LockTab","SetTabIcon","锟斤拷锟斤拷锟斤拷");
 			int nID = FindTab(tcf);
 			if(tcf->m_bLock)
 			{
@@ -3064,7 +3041,7 @@ void CMainFrame::MarkTab(CChildFrame *tcf)
 		return;
 	CWebMindView *pView = tcf->m_pView;
 	int nID = FindTab(tcf);
-	logging("MarkTab","SetTabIcon","调用了");
+	logging("MarkTab","SetTabIcon","锟斤拷锟斤拷锟斤拷");
 	if (MARKED(pView))
 	{
 		SetTabIcon( pView->m_nOlderIcon, nID, pView );
@@ -3147,7 +3124,7 @@ void CMainFrame::AddToPopup(CChildFrame *pChFrm)
 			}
 			if (dlg.m_bClosePage)
 			{
-				//CLOSE_PAGE(pChFrm); 不能用这个,否则无法提醒用户是否关闭
+				//CLOSE_PAGE(pChFrm); 锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷,锟斤拷锟斤拷锟睫凤拷锟斤拷锟斤拷锟矫伙拷锟角凤拷锟截憋拷
 				pChFrm->m_pView->m_bToClose = TRUE;
 				pChFrm->SendMessage(WM_CLOSE);
 			}
@@ -3570,7 +3547,7 @@ void CMainFrame::SetAsDefaultBrowser()
 		if(RegOpenKey(HKEY_CLASSES_ROOT, _T(".shtm"), &hKey) == ERROR_SUCCESS)
 		{
 			dwSize = sizeof(sz);
-			RegQueryValueEx(hKey, _T(""), NULL, NULL, (LPBYTE)sz, &dwSize);//返回指定键的返回值
+			RegQueryValueEx(hKey, _T(""), NULL, NULL, (LPBYTE)sz, &dwSize);//锟斤拷锟斤拷指锟斤拷锟斤拷锟侥凤拷锟斤拷值
 			if(strcmp(sz, "htmlfile")!=0)
 				RegSetValueEx(hKey, _T(""), NULL, REG_SZ, (LPBYTE)("htmlfile"), 9);
 			RegSetValueEx(hKey, _T("Content Type"), NULL, REG_SZ, (LPBYTE)("text/html"), 10);
@@ -3640,8 +3617,8 @@ BOOL CMainFrame::SetDefault(LPCSTR lpszKey, BOOL setdef)
 		DWORD dwRes;
 		char lpszModule[_MAX_PATH];
 
-		HINSTANCE hInstance = AfxGetInstanceHandle();//AfxGetInstanceHandle是指向当前应用程序对象的句柄
-		if (GetModuleFileName(hInstance, lpszModule+1, _MAX_PATH))//获取应用程序路径
+		HINSTANCE hInstance = AfxGetInstanceHandle();//AfxGetInstanceHandle锟斤拷指锟斤拷锟斤拷前应锟矫筹拷锟斤拷锟斤拷锟斤拷锟侥撅拷锟斤拷
+		if (GetModuleFileName(hInstance, lpszModule+1, _MAX_PATH))//锟斤拷取应锟矫筹拷锟斤拷路锟斤拷
 		{
 			*lpszModule = '\"';
 			strcat(lpszModule, "\" \"%1\"");
@@ -3814,7 +3791,7 @@ void CMainFrame::OnFileNewClip()
 }
 
 //
-//这里有关于在ReBar上设置MenuBar的信息
+//锟斤拷锟斤拷锟叫癸拷锟斤拷锟斤拷ReBar锟斤拷锟斤拷锟斤拷MenuBar锟斤拷锟斤拷息
 //
 void CMainFrame::OnViewMenubar() 
 {
@@ -3822,8 +3799,8 @@ void CMainFrame::OnViewMenubar()
 	REBARBANDINFO rbbi;
 	rbbi.cbSize = sizeof(rbbi);
 	rbbi.fMask = RBBIM_ID|RBBIM_STYLE;
-	int nb = m_wndReBar.GetReBarCtrl().IDToIndex(ID_MENU_BAR);//这里有关于把MenuBar放到ReBar上的记录
-	m_wndReBar.GetReBarCtrl().GetBandInfo(nb, &rbbi);////这里有关于把MenuBar放到ReBar上的记录
+	int nb = m_wndReBar.GetReBarCtrl().IDToIndex(ID_MENU_BAR);//锟斤拷锟斤拷锟叫癸拷锟节帮拷MenuBar锟脚碉拷ReBar锟较的硷拷录
+	m_wndReBar.GetReBarCtrl().GetBandInfo(nb, &rbbi);////锟斤拷锟斤拷锟叫癸拷锟节帮拷MenuBar锟脚碉拷ReBar锟较的硷拷录
 
 	if( rbbi.fStyle & RBBS_HIDDEN )
 	{
@@ -3841,7 +3818,7 @@ void CMainFrame::OnViewMenubar()
 }
 
 //<summary>
-//管理皮肤
+//锟斤拷锟斤拷皮锟斤拷
 //</summary>
 void CMainFrame::ShowSkin()
 {
@@ -4181,7 +4158,7 @@ void CMainFrame::OnOptionsWebMindoptions()
 	tabsprop.m_crSepColor = m_crSepColor;
 	tabsprop.m_bTopTab = m_bTopTab;
 	//save
-	//因为m_strDefaultDir记录的是绝对地址,所以要从ini里面读
+	//锟斤拷为m_strDefaultDir锟斤拷录锟斤拷锟角撅拷锟皆碉拷址,锟斤拷锟斤拷要锟斤拷ini锟斤拷锟斤拷锟斤拷
 	saveprop.m_strSavePath = app->GetProfileString("Settings", "DefaultDir",app->m_strDefaultDir);
 	saveprop.m_strImagePath = app->GetProfileString("Settings", "ImagePath",app->m_strImagePath);
 	//
@@ -5251,14 +5228,14 @@ void CMainFrame::SetTabTitle(LPCSTR lpszTitle, int nItem)
 }
 
 //<summary>
-//查找特定的标签页,并返回其索引
+//锟斤拷锟斤拷锟截讹拷锟侥憋拷签页,锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷
 //</summary>
 int CMainFrame::FindTab(CChildFrame *lpFrame, BOOL bCleanBlank)
 {
 	int n;
 	BOOL found;
 	register int i=0;
-	TCITEM TabCtrlItem;//这个代表一个标签页的信息，而m_wndTab是CAdvTabCtrl类型的
+	TCITEM TabCtrlItem;//锟斤拷锟斤拷锟斤拷锟斤拷一锟斤拷锟斤拷签页锟斤拷锟斤拷息锟斤拷锟斤拷m_wndTab锟斤拷CAdvTabCtrl锟斤拷锟酵碉拷
 
 	try{
 	i=0; 
@@ -5777,7 +5754,7 @@ void CMainFrame::InitFavorites(BOOL bOnlyLink)
 			if(szPath.Right(1) != "\\")
 				szPath += "\\";
 			strcpy(sz, (LPCSTR)szPath);
-			strcat(sz, "链接\\");
+			strcat(sz, "锟斤拷锟斤拷\\");
 			if(!SetCurrentDirectory(sz))
 			{
 				strcpy(sz, (LPCSTR)szPath);
@@ -5785,7 +5762,7 @@ void CMainFrame::InitFavorites(BOOL bOnlyLink)
 				if(!SetCurrentDirectory(sz))
 				{
 					strcpy(sz, (LPCSTR)szPath);
-					strcat(sz, "硈挡\\");
+					strcat(sz, "锟絪锟斤拷\\");
 					if(!SetCurrentDirectory(sz))
 					{
 						strcpy(sz, (LPCSTR)szPath);
@@ -5793,7 +5770,7 @@ void CMainFrame::InitFavorites(BOOL bOnlyLink)
 						if(!SetCurrentDirectory(sz))
 						{
 							strcpy(sz, (LPCSTR)szPath);
-							strcat(sz, "連結\\");
+							strcat(sz, "锟紹锟結\\");
 							if(!SetCurrentDirectory(sz))
 							{
 								strcpy(sz,"");
@@ -6954,7 +6931,7 @@ void CMainFrame::OnHelpHomepage()
 }
 
 //<summary>
-//其实这个函数是返回标签页的图标
+//锟斤拷实锟斤拷锟斤拷锟斤拷锟斤拷锟角凤拷锟截憋拷签页锟斤拷图锟斤拷
 //</summary>
 int CMainFrame::GetTabIcon(int nItem)
 {
@@ -6970,12 +6947,12 @@ int CMainFrame::GetTabIcon(int nItem)
 }
 
 //<summary>
-//其实这个函数是设置标签页的图标,就当前请求网站如果有图标，就用这个图标，如果没有,就用那个默认的图标
+//锟斤拷实锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟矫憋拷签页锟斤拷图锟斤拷,锟酵碉拷前锟斤拷锟斤拷锟斤拷站锟斤拷锟斤拷锟斤拷图锟疥，锟斤拷锟斤拷锟斤拷锟斤拷图锟疥，锟斤拷锟斤拷没锟斤拷,锟斤拷锟斤拷锟角革拷默锟较碉拷图锟斤拷
 //</summary>
 void CMainFrame::SetTabIcon(int nIcon, int nItem, CWebMindView* pView)
 {
 	try{
-	logging("SetTabIcon","验证进了该函数","***");
+	logging("SetTabIcon","锟斤拷证锟斤拷锟剿该猴拷锟斤拷","***");
 	//better place at first
 	if (g_bShowRead && nIcon==TI_NO)
 		nIcon = TI_READ;
@@ -6986,15 +6963,15 @@ void CMainFrame::SetTabIcon(int nIcon, int nItem, CWebMindView* pView)
 	{
 		if (nIcon==TI_100 || nIcon==TI_NO || nIcon==TI_READ)//TI_100=5 TI_NO=-1 TI_READ=9
 		{
-			if (IS_FAVICON(pView->m_nOldIcon))//这地方最好也要改成大于3
+			if (IS_FAVICON(pView->m_nOldIcon))//锟斤拷锟截凤拷锟斤拷锟斤拷也要锟侥成达拷锟斤拷3
 				return;
-			int nFavIcon = GetFavIcon(pView->m_lpszUrl);//favicon就是网站的图标啊，估计是这句出问题了
-			if (IS_FAVICON(nFavIcon))//由于从GetFavIcon里返回来的只是4，因为我这里加载的CImageList的位图里只有4张图片，现在再加载一张网络图片，当然是4了(从0计数)
+			int nFavIcon = GetFavIcon(pView->m_lpszUrl);//favicon锟斤拷锟斤拷锟斤拷站锟斤拷图锟疥啊锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷
+			if (IS_FAVICON(nFavIcon))//锟斤拷锟节达拷GetFavIcon锟斤返锟斤拷锟斤拷锟斤拷只锟斤拷4锟斤拷锟斤拷为锟斤拷锟斤拷锟斤拷锟斤拷锟截碉拷CImageList锟斤拷位图锟斤拷只锟斤拷4锟斤拷图片锟斤拷锟斤拷锟斤拷锟劫硷拷锟斤拷一锟斤拷锟斤拷锟斤拷图片锟斤拷锟斤拷然锟斤拷4锟斤拷(锟斤拷0锟斤拷锟斤拷)
 			{
 				nIcon = nFavIcon;
 				//CString sss;
 				//sss.Format("%d",nFavIcon);
-				//logging("SetTabIcon","通过url获取nFavIcon",sss);
+				//logging("SetTabIcon","通锟斤拷url锟斤拷取nFavIcon",sss);
 				isIconSet=TRUE;
 			}
 		}
@@ -7004,11 +6981,11 @@ void CMainFrame::SetTabIcon(int nIcon, int nItem, CWebMindView* pView)
 	TabCtrlItem.mask = TCIF_IMAGE;
 	if (isIconSet)
 	{
-		TabCtrlItem.iImage = nIcon;//让TabCtrl.iImage等于nIcon就是为了在标签页上显示网站图标
+		TabCtrlItem.iImage = nIcon;//锟斤拷TabCtrl.iImage锟斤拷锟斤拷nIcon锟斤拷锟斤拷为锟斤拷锟节憋拷签页锟斤拷锟斤拷示锟斤拷站图锟斤拷
 		isIconSet=FALSE;
 	}
 	else
-		TabCtrlItem.iImage=0;//如果没有下载下网站图标(或者在下载过程中或者出错)，就显示第0张iImage(0为基础)
+		TabCtrlItem.iImage=0;//锟斤拷锟斤拷没锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷站图锟斤拷(锟斤拷锟斤拷锟斤拷锟斤拷锟截癸拷锟斤拷锟叫伙拷锟竭筹拷锟斤拷)锟斤拷锟斤拷锟斤拷示锟斤拷0锟斤拷iImage(0为锟斤拷锟斤拷)
 	
 	//CString ss;
 	//ss.Format("%d",nIcon);
@@ -7599,7 +7576,7 @@ void CMainFrame::InitToolBarImage(BOOL bReplaceIcon)
 }
 
 //<summary>
-//初始化工具栏:就是传说中的那个标准工具栏
+//锟斤拷始锟斤拷锟斤拷锟斤拷锟斤拷:锟斤拷锟角达拷说锟叫碉拷锟角革拷锟斤拷准锟斤拷锟斤拷锟斤拷
 //</summary>
 void CMainFrame::InitToolBar(BOOL bReplaceIcon)
 {
@@ -7647,7 +7624,7 @@ void CMainFrame::InitToolBar(BOOL bReplaceIcon)
 	//lpIDArray:Pointer to an array of command Ids. It can be NULL to allocate empty buttons.
 	//nIDCount:Number of elements in the array pointed to by lpIDArray.
 	//m_wndToolBar.SetButtons(NULL, idx-1);
-	m_wndToolBar.SetButtons(NULL,0);//暂时修改下
+	m_wndToolBar.SetButtons(NULL,0);//锟斤拷时锟睫革拷锟斤拷
 	for(i=0; i<idx; i++)
 	{
 		itoa(i,tmp+1,10);
@@ -7655,11 +7632,11 @@ void CMainFrame::InitToolBar(BOOL bReplaceIcon)
 		if(id>=0 && id<nMaxBtn)
 		{
 			//void CToolBar::SetButtonInfo( int nIndex, UINT nID, UINT nStyle, int iImage );
-			//nIndex	要设置其信息的按钮或分隔线的索引
-			//nID	要给按钮的命令ID设置的值
-			//nStyle	新的按钮风格。下面的按钮风格是被支持的
-			//iImage	按钮的图像在位图中的新索引
-		//	if (id==0)//这个是我自己加的，这样就使得只有一个+号按钮了,但这个按钮比较特殊，有个“新建标签页、主页。。”等多个选项
+			//nIndex	要锟斤拷锟斤拷锟斤拷锟斤拷息锟侥帮拷钮锟斤拷锟街革拷锟竭碉拷锟斤拷锟斤拷
+			//nID	要锟斤拷锟斤拷钮锟斤拷锟斤拷锟斤拷ID锟斤拷锟矫碉拷值
+			//nStyle	锟铰的帮拷钮锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟侥帮拷钮锟斤拷锟斤拷锟角憋拷支锟街碉拷
+			//iImage	锟斤拷钮锟斤拷图锟斤拷锟斤拷位图锟叫碉拷锟斤拷锟斤拷锟斤拷
+		//	if (id==0)//锟斤拷锟斤拷锟斤拷锟斤拷锟皆硷拷锟接的ｏ拷锟斤拷锟斤拷锟斤拷使锟斤拷只锟斤拷一锟斤拷+锟脚帮拷钮锟斤拷,锟斤拷锟斤拷锟斤拷锟斤拷钮锟饺斤拷锟斤拷锟解，锟叫革拷锟斤拷锟铰斤拷锟斤拷签页锟斤拷锟斤拷页锟斤拷锟斤拷锟斤拷锟饺讹拷锟斤拷选锟斤拷
 			//{	
 				if(g_nToolBarStyle[id]!=TBBS_SEPARATOR && m_nTextLabel!=0)//if(m_nTextLabel == 2 && g_nToolBarStyle[id]!=TBBS_SEPARATOR)
 					m_wndToolBar.SetButtonInfo(n,g_nToolBarID[id],g_nToolBarStyle[id]| TBSTYLE_AUTOSIZE,g_nToolBarImg[id]);
@@ -7721,7 +7698,7 @@ void CMainFrame::InitToolBar(BOOL bReplaceIcon)
 		rbbi.fStyle |= RBBS_NOGRIPPER;
 	}
 	m_wndReBar.GetReBarCtrl().SetBandInfo(bandid, &rbbi);
-	m_wndToolBar.Invalidate();//Invalidate()发送一个WM_PAINT消息到队列里
+	m_wndToolBar.Invalidate();//Invalidate()锟斤拷锟斤拷一锟斤拷WM_PAINT锟斤拷息锟斤拷锟斤拷锟斤拷锟斤拷
 }
 
 void CMainFrame::OnUpdateToolbar(WPARAM wParam,LPARAM)
@@ -7732,7 +7709,7 @@ void CMainFrame::OnUpdateToolbar(WPARAM wParam,LPARAM)
 }
 
 //<summary>
-//打开一个新的WebMind
+//锟斤拷锟斤拷一锟斤拷锟铰碉拷WebMind
 //</summary>
 void CMainFrame::OnFileNewWebMind() 
 {
@@ -8453,7 +8430,7 @@ void CMainFrame::OnRtabProtect()
 				if(pView->m_nProgress<0)
 				{
 					pView->m_nOlderIcon = pView->m_nOldIcon;
-					//logging("OnRtabProtect","调用了SetTabIcon","..");
+					//logging("OnRtabProtect","锟斤拷锟斤拷锟斤拷SetTabIcon","..");
 					SetTabIcon( TI_PROTECT, m_nRTabID, pView );
 					//update tab bar
 					if(m_nTabStyle==2)
@@ -8475,7 +8452,7 @@ void CMainFrame::OnRtabProtect()
 
 					if(pView->m_nProgress<0)
 					{
-						//logging("OnRtabProtect","调用了SetTabIcon","..");
+						//logging("OnRtabProtect","锟斤拷锟斤拷锟斤拷SetTabIcon","..");
 						SetTabIcon( pView->m_nOlderIcon, m_nRTabID, pView );
 						//update tab bar
 						if(m_nTabStyle==2)
@@ -8603,8 +8580,8 @@ void CMainFrame::OnTimer(UINT nIDEvent)
 }
 
 //<summary>
-//简单的说，就是在创建一个窗口之前，会调用这个函数，
-//你可以通过修改参数CREATESTRUCT结构来事先修改要创建的这个窗口的一些特征
+//锟津单碉拷说锟斤拷锟斤拷锟斤拷锟节达拷锟斤拷一锟斤拷锟斤拷锟斤拷之前锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷
+//锟斤拷锟斤拷锟斤拷通锟斤拷锟睫改诧拷锟斤拷CREATESTRUCT锟结构锟斤拷锟斤拷锟斤拷锟睫革拷要锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟节碉拷一些锟斤拷锟斤拷
 //</summary>
 BOOL CMainFrame::PreCreateWindow(CREATESTRUCT& cs) 
 {
@@ -8613,7 +8590,7 @@ BOOL CMainFrame::PreCreateWindow(CREATESTRUCT& cs)
 	cs.y = 0;
 	cs.cx = GetSystemMetrics(SM_CXSCREEN);//800;
 	cs.cy = GetSystemMetrics(SM_CYSCREEN); //600;
-	//cs.lpszName="WebMind";//这就是我添加浏览器标题地方
+	//cs.lpszName="WebMind";//锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟截凤拷
 	return CMDIFrameWnd::PreCreateWindow(cs);
 }
 
@@ -10545,14 +10522,14 @@ _Release:
 	}catch(...){}
 }
 
-void CMainFrame::ChangTabPos(int npos)//改变标签页的位置:是顶部还是底部
+void CMainFrame::ChangTabPos(int npos)//锟侥憋拷锟斤拷签页锟斤拷位锟斤拷:锟角讹拷锟斤拷锟斤拷锟角底诧拷
 {
 	REBARBANDINFO rbbi;	
 	rbbi.cbSize = sizeof(rbbi);
 	rbbi.fMask = RBBIM_ID;//RBBIM_CHILDSIZE | RBBIM_IDEALSIZE | RBBIM_SIZE |
 	rbbi.wID = ID_VIEW_TASKBAR;
 
-	if(m_bTopTab ==1)//当前在顶部，就把tab移到底部
+	if(m_bTopTab ==1)//锟斤拷前锟节讹拷锟斤拷锟斤拷锟酵帮拷tab锟狡碉拷锟阶诧拷
 	{
 		//will move to bottom
 		m_wndTab.ModifyStyle(0, TCS_BOTTOM);
@@ -10569,7 +10546,7 @@ void CMainFrame::ChangTabPos(int npos)//改变标签页的位置:是顶部还是底部
 		}
 		m_wndReBar2.GetReBarCtrl().SetBandInfo(0, &rbbi);
 	}
-	else if(m_bTopTab==0)//在底部就移动到顶部
+	else if(m_bTopTab==0)//锟节底诧拷锟斤拷锟狡讹拷锟斤拷锟斤拷锟斤拷
 	{
 		//will move to top
 		m_wndTab.ModifyStyle(TCS_BOTTOM,0);
@@ -10982,7 +10959,7 @@ void CMainFrame::OnDelayLoadConfig(WPARAM wParam,LPARAM)
 	m_nAllowDBC = app->GetProfileInt("Settings", "AllowDBC", 1);
 	m_nAllowMC = app->GetProfileInt("Settings", "AllowMC", 4);
 	m_nAllowRC = app->GetProfileInt("Settings", "AllowRC", 5);
-	m_nLDbClickTabBlank = app->GetProfileInt("Settings", "LDbClickTabBlank", ID_FILE_NEW_BLANK);//终于找到了这个doubleClick的地方!!!
+	m_nLDbClickTabBlank = app->GetProfileInt("Settings", "LDbClickTabBlank", ID_FILE_NEW_BLANK);//锟斤拷锟斤拷锟揭碉拷锟斤拷锟斤拷锟斤拷doubleClick锟侥地凤拷!!!
 	m_nRDbClickTabBlank = app->GetProfileInt("Settings", "RDbClickTabBlank", ID_FILE_NEW_CURRENTPAGE);
 	//mouse
 	m_nLDbClick = app->GetProfileInt("Mouse", "LDbClick", 0);
@@ -11189,10 +11166,10 @@ void CMainFrame::OnRtabAutosave()
 	}
 }
 
-//心理状态按钮的事件响应函数(开始加在dialogbar上，但监听不了事件) //added by kosko
+//锟斤拷锟斤拷状态锟斤拷钮锟斤拷锟铰硷拷锟斤拷应锟斤拷锟斤拷(锟斤拷始锟斤拷锟斤拷dialogbar锟较ｏ拷锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟铰硷拷) //added by kosko
 void CMainFrame::OnBitMapButton()
 {
-	CString msg = "您的心理状况良好\n";
+	CString msg = "锟斤拷锟斤拷锟斤拷锟斤拷状锟斤拷锟斤拷锟斤拷\n";
 	AfxMessageBox(msg);
 }
 
@@ -11395,7 +11372,7 @@ void CMainFrame::OnViewLocktoolbar()
 {
 	// TODO: Add your command handler code here
 	//m_bLockToolbar = !m_bLockToolbar;
-	m_bLockToolbar=1;//为了让工具栏永远固定住，所以我这里将其值改为1 by kosko
+	m_bLockToolbar=1;//为锟斤拷锟矫癸拷锟斤拷锟斤拷锟斤拷远锟教讹拷住锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟斤将锟斤拷值锟斤拷为1 by kosko
 	FixToolbar(m_bLockToolbar);
 }
 
@@ -11405,7 +11382,7 @@ void CMainFrame::OnUpdateViewLocktoolbar(CCmdUI* pCmdUI)
 	pCmdUI->SetCheck(m_bLockToolbar);
 }
 
-//固定工具栏(应该就是我苦苦寻找的fix rebar吧)
+//锟教讹拷锟斤拷锟斤拷锟斤拷(应锟矫撅拷锟斤拷锟揭匡拷锟斤拷寻锟揭碉拷fix rebar锟斤拷)
 void CMainFrame::FixToolbar(BOOL bFixed)
 {
 	try{
@@ -11417,10 +11394,10 @@ void CMainFrame::FixToolbar(BOOL bFixed)
 	for(int i=0; i<n; i++)
 	{
 		m_wndReBar.GetReBarCtrl().GetBandInfo(i, &rbbi);
-		if(m_bLockToolbar)//当选中固定住rebar
+		if(m_bLockToolbar)//锟斤拷选锟叫固讹拷住rebar
 		{
-            rbbi.fStyle &= ~RBBS_GRIPPERALWAYS;//RBBS_GRIPPERALWAYS 带区有可调尺寸的小把手，即使命令带只有一个带区。
-            rbbi.fStyle |= RBBS_NOGRIPPER;//RBBS_NOGRIPPER 带区没有可调尺寸的小把手，因此用户不能移动带区
+            rbbi.fStyle &= ~RBBS_GRIPPERALWAYS;//RBBS_GRIPPERALWAYS 锟斤拷锟斤拷锟叫可碉拷锟竭达拷锟斤拷小锟斤拷锟街ｏ拷锟斤拷使锟斤拷锟斤拷锟斤拷只锟斤拷一锟斤拷锟斤拷锟斤拷锟斤拷
+            rbbi.fStyle |= RBBS_NOGRIPPER;//RBBS_NOGRIPPER 锟斤拷锟斤拷没锟叫可碉拷锟竭达拷锟斤拷小锟斤拷锟街ｏ拷锟斤拷锟斤拷锟矫伙拷锟斤拷锟斤拷锟狡讹拷锟斤拷锟斤拷
         }
 		else
 		{
@@ -12226,7 +12203,7 @@ void CMainFrame::OnSearch(UINT nID)
 }
 
 //<summary>
-//搜索关键词
+//锟斤拷锟斤拷锟截硷拷锟斤拷
 //</summary>
 void CMainFrame::SearchKey(CString keyw, CString url)
 {
@@ -12263,7 +12240,7 @@ void CMainFrame::SearchKey(CString keyw, CString url)
 	}
 	}catch(...){}
 }
-//这个是在最小化时，托盘状态下的图标
+//锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷小锟斤拷时锟斤拷锟斤拷锟斤拷状态锟铰碉拷图锟斤拷
 void CMainFrame::AddTrayIcon()
 {
 	NOTIFYICONDATA nid;
@@ -12306,7 +12283,7 @@ void CMainFrame::StopView(int nTabID)
 	//change icon
 	if (pvw->m_nOldIcon<TI_1 || pvw->m_nOldIcon>TI_3)
 		return;
-	//logging("StopView","SetTabIcon","调用了");
+	//logging("StopView","SetTabIcon","锟斤拷锟斤拷锟斤拷");
 	if(pvw->m_bIsActive)
 		SetTabIcon( TI_NO, nTabID, pvw );
 	else
@@ -12349,7 +12326,7 @@ void CMainFrame::OnUpdateViewAutohide(CCmdUI* pCmdUI)
 	ToolBarSetCheck(pCmdUI, m_bAutoHideMode);
 }
 
-//终于等到了MenuBar啊
+//锟斤拷锟节等碉拷锟斤拷MenuBar锟斤拷
 void CMainFrame::OnViewSysMenuBar() 
 {
 	REBARBANDINFO rbbi;
@@ -12580,7 +12557,7 @@ CString CMainFrame::GetMemory()
 }
 
 //<summary>
-//获取用户IP
+//锟斤拷取锟矫伙拷IP
 //</summary>
 CString CMainFrame::GetLocalIP()
 {
@@ -12747,7 +12724,7 @@ HBITMAP	CMainFrame::GetBitmap(LPCTSTR lpszText)
 	return hbmp;
 }
 
-void CMainFrame::InitTaskBarImage()//难道是这里做的手脚?
+void CMainFrame::InitTaskBarImage()//锟窖碉拷锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟街斤拷?
 {
 	CImageList img;
 	HBITMAP hbmp;
@@ -12801,7 +12778,7 @@ void CMainFrame::InitTaskBarImage()//难道是这里做的手脚?
 }
 
 //<summary>
-//地址栏上的右端那个转到图标
+//锟斤拷址锟斤拷锟较碉拷锟揭讹拷锟角革拷转锟斤拷图锟斤拷
 //</summary>
 void CMainFrame::InitGoImage()
 {
@@ -12810,7 +12787,7 @@ void CMainFrame::InitGoImage()
 	if(oldimg!=NULL)
 		oldimg->DeleteImageList();
 
-	//给地址栏(本质是CToolBar)加图片的代码
+	//锟斤拷锟斤拷址锟斤拷(锟斤拷锟斤拷锟斤拷CToolBar)锟斤拷图片锟侥达拷锟斤拷
 	CImageList img;
 	HBITMAP hbmp;
 
@@ -12827,7 +12804,7 @@ void CMainFrame::InitGoImage()
 }
 
 //<summary>
-//我服了，现在才出现MenuBar
+//锟揭凤拷锟剿ｏ拷锟斤拷锟节才筹拷锟斤拷MenuBar
 //</summary>
 void CMainFrame::InitMenuBarImage()
 {
@@ -13175,7 +13152,7 @@ void CMainFrame::OnViewExTool()
 	rbbi.cbSize = sizeof(rbbi);
 	rbbi.fMask = RBBIM_ID|RBBIM_STYLE;
 	int nb = m_wndReBar.GetReBarCtrl( ).IDToIndex(ID_VIEW_EX_TOOL);//The zero-based band index if successful, or -1 otherwise. If duplicate band indices exist, the first one is returned.
-	m_wndReBar.GetReBarCtrl().GetBandInfo(nb, &rbbi);//其实就是为那个band改变style
+	m_wndReBar.GetReBarCtrl().GetBandInfo(nb, &rbbi);//锟斤拷实锟斤拷锟斤拷为锟角革拷band锟侥憋拷style
 
 	if( rbbi.fStyle & RBBS_HIDDEN  || !m_ExternalTool.IsWindowVisible())
 	{
@@ -14639,7 +14616,7 @@ void CMainFrame::RunDownManagerScript(CString strNavigate, CChildFrame* tcf)
 
 		try{
 		pDisp = tcf->m_pView->GetHtmlDocument();
-		//当点击一个要新开窗口的zip链接时,pDisp==NULL
+		//锟斤拷锟斤拷锟斤拷一锟斤拷要锟铰匡拷锟斤拷锟节碉拷zip锟斤拷锟斤拷时,pDisp==NULL
 		if(pDisp==NULL)
 		{
 			tcf->PostMessage(WM_CLOSE);//close it
@@ -15784,7 +15761,7 @@ LRESULT CMainFrame::OnAppCommand(WPARAM wParam,LPARAM lParam)
 }
 
 //<summary>
-//把band的style信息之类的写进WebMind.ini
+//锟斤拷band锟斤拷style锟斤拷息之锟斤拷锟斤拷写锟斤拷WebMind.ini
 //</summary>
 void CMainFrame::WriteProfileReBarBandsState()
 {
@@ -15809,7 +15786,7 @@ void CMainFrame::WriteProfileReBarBandsState()
 	app->WriteProfileInt("BandBar", band, 0);
 }
 
-//设置band的信息函数
+//锟斤拷锟斤拷band锟斤拷锟斤拷息锟斤拷锟斤拷
 void SetBandInfo(UINT nIndex,UINT nID,UINT fStyle,UINT cx)
 {
 	int count = countof(g_BandInfo);
@@ -15825,7 +15802,7 @@ void SetBandInfo(UINT nIndex,UINT nID,UINT fStyle,UINT cx)
 	}
 }
 
-//获取band信息函数
+//锟斤拷取band锟斤拷息锟斤拷锟斤拷
 BandInfo* GetBandInfo(UINT nIndex)
 {
 	int count = countof(g_BandInfo);
@@ -15837,7 +15814,7 @@ BandInfo* GetBandInfo(UINT nIndex)
 	return NULL;
 }
 
-//英文m_wndMenuBar这些指针无法放到g_BandInfo中(编译找不到),所以只好用函数
+//英锟斤拷m_wndMenuBar锟斤拷些指锟斤拷锟睫凤拷锟脚碉拷g_BandInfo锟斤拷(锟斤拷锟斤拷锟揭诧拷锟斤拷),锟斤拷锟斤拷只锟斤拷锟矫猴拷锟斤拷
 CWnd* CMainFrame::GetBandWnd(int id)
 {
 	switch(id)
@@ -15852,12 +15829,12 @@ CWnd* CMainFrame::GetBandWnd(int id)
 	case ID_VIEW_SEARCH:	return &m_SearchBar;
 	case ID_VIEW_TASKBAR:	return &m_wndTab;
 	case ID_VIEW_STATUS_BAR:return &m_wndStatusBar;//must add this for autohide and fullscreen
-	case IDD_PSYCHOSTATEBAR:return &m_psychoStateBar;//显示心理状态窗口,added by kosko
+	case IDD_PSYCHOSTATEBAR:return &m_psychoStateBar;//锟斤拷示锟斤拷锟斤拷状态锟斤拷锟斤拷,added by kosko
 	}
 	return NULL;
 }
 
-//获取band的标题
+//锟斤拷取band锟侥憋拷锟斤拷
 CString CMainFrame::GetBandTitle(int id)
 {
 	CString str;
@@ -15881,7 +15858,7 @@ CString CMainFrame::GetBandTitle(int id)
 }
 
 //<summary>
-//获取浏览器上band的信息,存在WebMind.ini里的
+//锟斤拷取锟斤拷锟斤拷锟斤拷锟斤拷band锟斤拷锟斤拷息,锟斤拷锟斤拷WebMind.ini锟斤拷锟斤拷
 //</summary>
 void CMainFrame::GetProfileReBarBandsState()
 {
@@ -15891,8 +15868,8 @@ void CMainFrame::GetProfileReBarBandsState()
 	int i=0;
 	while(1)
 	{
-		itoa(i,band+4,10);//把i加到band的第四位，然后转华成string
-		nBand = app->GetProfileInt("BandBar", band, 0);//nBand其实是资源的代号，比如32869便是ID_MENUBAR
+		itoa(i,band+4,10);//锟斤拷i锟接碉拷band锟侥碉拷锟斤拷位锟斤拷然锟斤拷转锟斤拷锟斤拷string
+		nBand = app->GetProfileInt("BandBar", band, 0);//nBand锟斤拷实锟斤拷锟斤拷源锟侥达拷锟脚ｏ拷锟斤拷锟斤拷32869锟斤拷锟斤拷ID_MENUBAR
 		if (nBand<1)
 			break;
 		itoa(i,size+4,10);
@@ -15906,8 +15883,8 @@ void CMainFrame::GetProfileReBarBandsState()
 	BandInfo* pBi;
 	i=0;
 	int count = countof(g_BandInfo);
-	//下面这个循环就是把所有的band全加入了ReBar里了,所以要将Tab这个band也加入ReBar中，关键就在这里了。
-	while(i<count)//(i<count) 这里必须是i<count而不是i<count-1，因为标签栏对应id就是count-1
+	//锟斤拷锟斤拷锟斤拷锟斤拷循锟斤拷锟斤拷锟角帮拷锟斤拷锟叫碉拷band全锟斤拷锟斤拷锟斤拷ReBar锟斤拷锟斤拷,锟斤拷锟斤拷要锟斤拷Tab锟斤拷锟斤拷band也锟斤拷锟斤拷ReBar锟叫ｏ拷锟截硷拷锟斤拷锟斤拷锟斤拷锟斤拷锟剿★拷
+	while(i<count)//(i<count) 锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷i<count锟斤拷锟斤拷锟斤拷i<count-1锟斤拷锟斤拷为锟斤拷签锟斤拷锟斤拷应id锟斤拷锟斤拷count-1
 	{
 		//###############################################################
 		pBi = GetBandInfo(i);
@@ -15915,8 +15892,8 @@ void CMainFrame::GetProfileReBarBandsState()
 		UINT nStyle;
 		int cxWidth;
 		if (pBi!=NULL)
-			nID = pBi->nID;//这个得从文件里读取已经存储的style啊
-		if (!m_bTopTab && nID == ID_VIEW_TASKBAR)//当nID是指标签栏，但这个标签栏是放到浏览器下面时(Rebar2)，就不用处理了。
+			nID = pBi->nID;//锟斤拷锟斤拷锟矫达拷锟侥硷拷锟斤拷锟斤拷取锟窖撅拷锟芥储锟斤拷style锟斤拷
+		if (!m_bTopTab && nID == ID_VIEW_TASKBAR)//锟斤拷nID锟斤拷指锟斤拷签锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷签锟斤拷锟角放碉拷锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷时(Rebar2)锟斤拷锟酵诧拷锟矫达拷锟斤拷锟剿★拷
 		{
 			i++;
 			continue;
@@ -15999,20 +15976,20 @@ void CMainFrame::GetProfileReBarBandsState()
 		m_wndReBar.GetReBarCtrl().SetBandInfo(i, &rbBand);
 		int dd=nStyle&RBBS_HIDDEN ? MF_UNCHECKED : MF_CHECKED;
 		if (nID==IDD_PSYCHOSTATEBAR)
-			dd=8;//显示出心理指标窗口,因为目前我不能找出怎么添加显示隐藏栏 added by kosko
+			dd=8;//锟斤拷示锟斤拷锟斤拷锟斤拷指锟疥窗锟斤拷,锟斤拷为目前锟揭诧拷锟斤拷锟揭筹拷锟斤拷么锟斤拷锟斤拷锟斤拷示锟斤拷锟斤拷锟斤拷 added by kosko
 		GetMenu()->CheckMenuItem(nID, dd);
 		//
 		i++;
 	}
 
-	//在OnCreate里已经创建了
+	//锟斤拷OnCreate锟斤拷锟窖撅拷锟斤拷锟斤拷锟斤拷
 /*	m_newdlgbar.SetBarStyle(m_wndToolBar.GetBarStyle() | 
 		CBRS_TOOLTIPS | CBRS_FLYBY | CBRS_SIZE_DYNAMIC);
 	m_newdlgbar.EnableDocking(CBRS_ALIGN_ANY);
 	DockControlBar(&m_newdlgbar);
 	
 	m_wndReBar.AddBar(&m_newdlgbar, NULL, NULL,m_AddressBar.GetBarStyle() | 
-		CBRS_TOOLTIPS | CBRS_FLYBY | CBRS_SIZE_DYNAMIC);//还要调整格式，基本已经搞定//暂时性的注释掉
+		CBRS_TOOLTIPS | CBRS_FLYBY | CBRS_SIZE_DYNAMIC);//锟斤拷要锟斤拷锟斤拷锟斤拷式锟斤拷锟斤拷锟斤拷锟窖撅拷锟姐定//锟斤拷时锟皆碉拷注锟酵碉拷
 	
 	BOOL bSecondHorizAxis = FALSE;
 	BOOL bSecondVertAxis = TRUE;
@@ -16619,7 +16596,7 @@ BOOL CMainFrame::DoSpecialUrl(CString str)
 #define CLOSEDELNULL(obj);	if(obj != NULL)	{obj->Close(); delete obj; obj= NULL;}
 
 //<summary>
-//下载图标进程
+//锟斤拷锟斤拷图锟斤拷锟斤拷锟斤拷
 //</summary>
 UINT DownloadThreadProc(LPVOID pParam)
 {
@@ -16647,7 +16624,7 @@ UINT DownloadThreadProc(LPVOID pParam)
 	//te.Format("%d",nIcon);
 	//logging("DownloadThreadProc","nIcon",te);
 	//even not get the icon, must insert the flag to list
-	pmf->m_FavIconList.Insert(strRoot,nIcon);//这个地方是不是有问题呢,是不是有可能将-3插入m_FavIconList里
+	pmf->m_FavIconList.Insert(strRoot,nIcon);//锟斤拷锟斤拷锟截凤拷锟角诧拷锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷,锟角诧拷锟斤拷锟叫匡拷锟杰斤拷-3锟斤拷锟斤拷m_FavIconList锟斤拷
 	//update all same root tab icon
 	if (IS_FAVICON(nIcon))
 		pmf->SetAllTabFavIcon(strRoot,nIcon);
@@ -16659,7 +16636,7 @@ UINT DownloadThreadProc(LPVOID pParam)
 }
 
 //<summary>
-//获取缓存文件路径
+//锟斤拷取锟斤拷锟斤拷锟侥硷拷路锟斤拷
 //</summary>
 CString _GetCacheFilePath(CString strUrl)
 {
@@ -16698,7 +16675,7 @@ void CMainFrame::SetAllTabFavIcon(CString strRoot, int nIcon)
 		tcf = ((CChildFrame*)TabCtrlItem.lParam);
 		if(VALID_TCF(tcf))
 		{
-			//logging("LockTab","SetTabIcon","调用了");
+			//logging("LockTab","SetTabIcon","锟斤拷锟斤拷锟斤拷");
 			strTemp = _StringGetTopUrl(tcf->m_pView->m_lpszUrl);
 			if (strTemp == strRoot)
 				SetTabIcon(nIcon,i,tcf->m_pView);
@@ -16707,7 +16684,7 @@ void CMainFrame::SetAllTabFavIcon(CString strRoot, int nIcon)
 }
 
 //<summary>
-//在缓冲里查找图标
+//锟节伙拷锟斤拷锟斤拷锟斤拷锟斤拷图锟斤拷
 //</summary>
 int CMainFrame::FindCacheFavIcon(CString strRoot)
 {
@@ -16718,7 +16695,7 @@ int CMainFrame::FindCacheFavIcon(CString strRoot)
 	//
 	HICON hIconSm;
 	hIconSm = (HICON)LoadImage(NULL, 
-				strIcon,//这正是要加载的图片
+				strIcon,//锟斤拷锟斤拷锟斤拷要锟斤拷锟截碉拷图片
 				IMAGE_ICON,
 				16, 16,
 				LR_LOADFROMFILE
@@ -16727,13 +16704,13 @@ int CMainFrame::FindCacheFavIcon(CString strRoot)
 	{
 		
 		CImageList* pImg = m_wndTab.GetImageList();
-		int nIcon = pImg->Add(hIconSm);//网那个标签页位图里加载 这个函数往CImageList中追加一个图标。
+		int nIcon = pImg->Add(hIconSm);//锟斤拷锟角革拷锟斤拷签页位图锟斤拷锟斤拷锟斤拷 锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷CImageList锟斤拷追锟斤拷一锟斤拷图锟疥。
 		//CImageList::Add() Call this function to add one or more images or an icon to an image list.
-		//Return Value:Zero-based index of the first new image if successful; otherwise – 1.
+		//Return Value:Zero-based index of the first new image if successful; otherwise 锟紺 1.
 		DestroyIcon(hIconSm);
 		//CString ii;
 		//ii.Format("%d",nIcon);
-		//logging("FindCacheFavIcon","网图标列表里添加图标",ii);
+		//logging("FindCacheFavIcon","锟斤拷图锟斤拷锟叫憋拷锟斤拷锟斤拷锟斤拷图锟斤拷",ii);
 		return nIcon;
 	}
 
@@ -16744,10 +16721,10 @@ int CMainFrame::GetFavIcon(CString strUrl)
 {
 	if (!IS_HTTP(strUrl))
 		return -1;
-//	TstLog();//用来测试日志系统
+//	TstLog();//锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷志系统
 	int nIcon;
 	CString strRoot = _StringGetTopUrl(strUrl);
-	nIcon = m_FavIconList.Find(strRoot);//这地方有问题啊，结果竟然有可能返回个-3
+	nIcon = m_FavIconList.Find(strRoot);//锟斤拷锟截凤拷锟斤拷锟斤拷锟解啊锟斤拷锟斤拷锟斤拷锟斤拷然锟叫匡拷锟杰凤拷锟截革拷-3
 	if (nIcon != FI_NOT_IN_LIST)//FI_NOT_IN_LIST -1
 		return nIcon;
 	//get favicon from cache
@@ -16763,7 +16740,7 @@ int CMainFrame::GetFavIcon(CString strUrl)
 	strRoot += "favicon.ico";
 	char *szUrl = (char*)malloc(strRoot.GetLength()+1);
 	STRNCPY(szUrl, strRoot, strRoot.GetLength());
-	AfxBeginThread(DownloadThreadProc, szUrl);//原来是这个进程把(strRoot,-3)插入到m_FavIconList里
+	AfxBeginThread(DownloadThreadProc, szUrl);//原锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟教帮拷(strRoot,-3)锟斤拷锟诫到m_FavIconList锟斤拷
 	//must free the szUrl in thread
 
 	return -1;
@@ -16981,7 +16958,7 @@ void CMainFrame::exportXML(CMarkup *m_hXML)
 
 // when each tab is closed, it will call this function to write its
 // history information into the history data structure in MainFrame
-//加入页面浏览序列
+//锟斤拷锟斤拷页锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷
 void CMainFrame::addPageSequence(List *pHistory)
 {
 	if(pHistory && pHistory->size() > 0)
@@ -17353,7 +17330,7 @@ void CMainFrame::GenerationScheduleSingle(CWebMindView *pView, int m_button, Lis
 
 // After the user clicks "Mark IC" or "Suggest" button,
 // the system will generate recommendations for evaluation
-//该函数响应suggest按钮 来生成推荐
+//锟矫猴拷锟斤拷锟斤拷应suggest锟斤拷钮 锟斤拷锟斤拷锟斤拷锟狡硷拷
 BOOL CMainFrame::evalRecommendation(CWebMindView *pView, int m_button)
 {
 	CHighTime m_timeEvalStart;
@@ -17755,7 +17732,7 @@ BOOL CMainFrame::evalRecommendation(CWebMindView *pView, int m_button)
 		pEvaluation->m_action = myEvaluation.m_action;
 
 		CWebMindView * pNewView;
-		//add by ny 相对地址前面加上google域名
+		//add by ny 锟斤拷锟皆碉拷址前锟斤拷锟斤拷锟斤拷google锟斤拷锟斤拷
 		CString domain="www.google.com.hk";
 		if(m_evalURLs[pEvaluation->m_chosenPage].Find("/url?q=")>=0 ||m_evalURLs[pEvaluation->m_chosenPage].Find("/search?q=")>=0)
 		{
@@ -17827,7 +17804,7 @@ BOOL CMainFrame::evalRecommendation(CWebMindView *pView, int m_button)
 // generate the recommendation based on naive word frequency model
 // in this model, we sort the words based on their occurences in the
 // session, and querying google
-//根据一个session原始词频来生成关键词序列
+//锟斤拷锟斤拷一锟斤拷session原始锟斤拷频锟斤拷锟斤拷锟缴关硷拷锟斤拷锟斤拷锟斤拷
 void CMainFrame::modelMFW(List *m_sessionWords, CStringArray &stemQuery, CStringArray &genQuery, CStringArray &genURLs, CStringArray &genTitles)
 {
 	genURLs.RemoveAll();
@@ -17875,7 +17852,7 @@ void CMainFrame::modelMFW(List *m_sessionWords, CStringArray &stemQuery, CString
 
 // generate the recommendation based on IC-word Model (C45)
 // at most 10 URLs will be genrated
-//根绝决策树C45类生成推荐
+//锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷C45锟斤拷锟斤拷锟斤拷锟狡硷拷
 void CMainFrame::modelICWordC45(List *m_sessionWords, CStringArray &stemQuery, CStringArray &genQuery, CStringArray &genURLs, CStringArray &genTitles)
 {
 	stemQuery.RemoveAll();
@@ -17907,7 +17884,7 @@ void CMainFrame::modelICWordC45(List *m_sessionWords, CStringArray &stemQuery, C
 // generate the recommendation based on J-query Model
 // in this model, we sort the words based on their Jewell score in the
 // session, and querying google by the top 4 words
-//基于Jewell权重来排序关键词
+//锟斤拷锟斤拷Jewell权锟斤拷锟斤拷锟斤拷锟斤拷锟截硷拷锟斤拷
 void CMainFrame::modelICRelevant(List *m_sessionWords, CStringArray &stemQuery, CStringArray &genQuery, CStringArray &genURLs, CStringArray &genTitles)
 {
 	stemQuery.RemoveAll();
@@ -17938,7 +17915,7 @@ void CMainFrame::modelICRelevant(List *m_sessionWords, CStringArray &stemQuery, 
 
 // generate the recommendation based on IC-query Model
 // at most 10 URLs will be genrated
-//基于IC-query模型来生成推荐
+//锟斤拷锟斤拷IC-query模锟斤拷锟斤拷锟斤拷锟斤拷锟狡硷拷
 void CMainFrame::modelICQuery(List *m_sessionWords, CStringArray &stemQuery, CStringArray &genQuery, CStringArray &genURLs, CStringArray &genTitles)
 {
 	stemQuery.RemoveAll();
@@ -17969,7 +17946,7 @@ void CMainFrame::modelICQuery(List *m_sessionWords, CStringArray &stemQuery, CSt
 
 //
 // model = 0 : IC-word, 1 : IC-Relevant, 2 : IC-Query
-//模型函数，根据第一个参数来判断选择哪个模型
+//模锟酵猴拷锟斤拷锟斤拷锟斤拷锟捷碉拷一锟斤拷锟斤拷锟斤拷锟斤拷锟叫讹拷选锟斤拷锟侥革拷模锟斤拷
 
 void CMainFrame::modelBase(int model, List *m_sessionWords, CStringArray &stemQuery, CStringArray &genQuery, CStringArray &genURLs, CStringArray &genTitles, C45Learner *m_pDT, double weight)
 {
@@ -18084,7 +18061,7 @@ void CMainFrame::modelBase(int model, List *m_sessionWords, CStringArray &stemQu
 
 // identify search query from the list of word based on its weight,
 // will return the used query, URLs and titles.
-//根据关键词返回搜索结果
+//锟斤拷锟捷关硷拷锟绞凤拷锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷
 void CMainFrame::queryingSearchEngine(CStringArray &m_stemWords, CArray<double, double&> &m_icProbs, 
 							  CStringArray &stemQuery, CStringArray &genQuery, 
 							  CStringArray &genURLs, CStringArray &genTitles)
@@ -18198,7 +18175,7 @@ void CMainFrame::queryingSearchEngine(CStringArray &m_stemWords, CArray<double, 
 
 // querying Google.com by a sequence of key words
 //change by ny:const CString &m_strQuery
-//利用生成的关键词作为查询关键词查询Google
+//锟斤拷锟斤拷锟斤拷锟缴的关硷拷锟斤拷锟斤拷为锟斤拷询锟截硷拷锟绞诧拷询Google
 void CMainFrame::queryingGoogle(CString &m_strQuery, CStringArray &genURLs, CStringArray &genTitles)
 {
 	CString m_url;
@@ -18313,7 +18290,7 @@ void CMainFrame::queryingGoogle(CString &m_strQuery, CStringArray &genURLs, CStr
 }
 
 // get the relevant words for evaluation
-//为评估获得相关词
+//为锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟截达拷
 void CMainFrame::getRelevantWords(List *m_sessionWords, CStringArray &m_evalQuery)
 {
 	ASSERT(m_sessionWords);
@@ -18361,7 +18338,7 @@ void CMainFrame::getRelevantWords(List *m_sessionWords, CStringArray &m_evalQuer
 }
 
 // remove the current URL from the URL list
-//从URL列表中移除当前URL
+//锟斤拷URL锟叫憋拷锟斤拷锟狡筹拷锟斤拷前URL
 void CMainFrame::excludeExaminedURL(CWebMindView *pView, CStringArray &genURLs, CStringArray &genTitles)
 {
 	List *pHistory;
